@@ -71,7 +71,7 @@ PROPOSE_TAX = 0.05
 DIVORCE_COST = 2000
 
 # ─── Images (catbox/direct links) ────────────────────────────
-IMG_KILL     = os.getenv("IMG_KILL",     "")
+IMG_KILL     = os.getenv("IMG_KILL",     "https://n.uguu.se/WSHMjyin.jpg")
 IMG_ROB      = os.getenv("IMG_ROB",      "")
 IMG_WAR_WIN  = os.getenv("IMG_WAR_WIN",  "")
 IMG_WAR_DRAW = os.getenv("IMG_WAR_DRAW", "")
@@ -85,7 +85,7 @@ IMG_FARM     = os.getenv("IMG_FARM",     "")
 IMG_PROTECT  = os.getenv("IMG_PROTECT",  "")
 IMG_REVIVE   = os.getenv("IMG_REVIVE",   "")
 IMG_WANTED   = os.getenv("IMG_WANTED",   "")
-IMG_WELCOME  = os.getenv("IMG_WELCOME",  "")
+IMG_WELCOME  = os.getenv("IMG_WELCOME",  "https://files.catbox.moe/3rdf9a.jpg")
 
 # ─── Shop Items ───────────────────────────────────────────────
 SHOP_ITEMS = {
