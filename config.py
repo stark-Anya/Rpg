@@ -5,14 +5,14 @@ load_dotenv()
 
 # ─── Bot Config ───────────────────────────────────────────────
 BOT_TOKEN = os.getenv("BOT_TOKEN", "YOUR_BOT_TOKEN_HERE")
-OWNER_ID = int(os.getenv("OWNER_ID", "123456789"))
+OWNER_ID = int(os.getenv("OWNER_ID", "5864182070"))
 
 # ─── Links ────────────────────────────────────────────────────
-SUPPORT_LINK = os.getenv("SUPPORT_LINK", "https://t.me/your_support")
-UPDATE_LINK = os.getenv("UPDATE_LINK", "https://t.me/your_updates")
-OWNER_LINK = os.getenv("OWNER_LINK", "https://t.me/your_username")
-GUIDE_PDF_LINK = os.getenv("GUIDE_PDF_LINK", "https://your-guide-link.com")
-BOT_USERNAME = os.getenv("BOT_USERNAME", "your_bot_username")
+SUPPORT_LINK = os.getenv("SUPPORT_LINK", "https://t.me/CarelessxWorld")
+UPDATE_LINK = os.getenv("UPDATE_LINK", "https://t.me/CarelessxCoder")
+OWNER_LINK = os.getenv("OWNER_LINK", "https://t.me/CarelessxOwner")
+GUIDE_PDF_LINK = os.getenv("GUIDE_PDF_LINK", "https://t.me/StarkFiles_Bot?start=BQADAQAD3BAAAsxe6EYP8Cy0nuHBYE")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "StarkxGame_Bot")
 
 # ─── MongoDB ──────────────────────────────────────────────────
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
