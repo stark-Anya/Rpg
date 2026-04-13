@@ -73,7 +73,7 @@ DIVORCE_COST = 2000
 # ─── Images (catbox/direct links) ────────────────────────────
 IMG_KILL     = os.getenv("IMG_KILL",     "https://n.uguu.se/WSHMjyin.jpg")
 IMG_ROB      = os.getenv("IMG_ROB",      "")
-IMG_WAR_WIN  = os.getenv("IMG_WAR_WIN",  "")
+IMG_WAR_WIN  = os.getenv("IMG_WAR_WIN",  "https://d.uguu.se/hTRlxHjc.jpg")
 IMG_WAR_DRAW = os.getenv("IMG_WAR_DRAW", "")
 IMG_PROPOSE  = os.getenv("IMG_PROPOSE",  "https://o.uguu.se/tKXeGsNj.jpg")
 IMG_MARRY    = os.getenv("IMG_MARRY",    "https://n.uguu.se/eiouEWkD.jpg")
