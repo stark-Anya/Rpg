@@ -147,7 +147,10 @@ OWNER_TEXT = f"""👑 <b>Owner Commands</b>
 def main_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("➕ Add Me to a Group", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-        [InlineKeyboardButton("📖 Help & Commands", callback_data="menu_help")],
+        [
+            InlineKeyboardButton("📖 Help", callback_data="menu_help"),
+            InlineKeyboardButton("🤖 More Bots", url=f"https://t.me/Anya_Bots"),
+        ],
         [
             InlineKeyboardButton("🆘 Support", url=SUPPORT_LINK),
             InlineKeyboardButton("📢 Updates", url=UPDATE_LINK),
@@ -165,6 +168,10 @@ def help_keyboard(user_id: int):
         [
             InlineKeyboardButton("💍 Social", callback_data="cmd_social"),
             InlineKeyboardButton("⛩️ Group", callback_data="cmd_group"),
+        ],
+        [
+            InlineKeyboardButton("🎵 Music", url=f"https://t.me/Kellymusicebot?start=start"),
+            InlineKeyboardButton("🛡️ Group Help", url=f"https://t.me/EdithHelpsBot?start=start"),
         ],
     ]
     if user_id == OWNER_ID:
