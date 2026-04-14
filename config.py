@@ -3,22 +3,22 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ── Bot ────────────────────────────────────────────────────────
-BOT_TOKEN     = os.getenv("BOT_TOKEN", "YOUR_BOT_TOKEN")
-OWNER_ID      = int(os.getenv("OWNER_ID", "123456789"))
-BOT_USERNAME  = os.getenv("BOT_USERNAME", "your_bot")
+BOT_TOKEN     = os.getenv("BOT_TOKEN", "BOT_TOKEN")
+OWNER_ID      = int(os.getenv("OWNER_ID", "OWNER_ID"))
+BOT_USERNAME  = os.getenv("BOT_USERNAME", "") #WITHOUT @@@@@
 
 # ── Links ──────────────────────────────────────────────────────
-SUPPORT_LINK   = os.getenv("SUPPORT_LINK", "https://t.me/support")
-UPDATE_LINK    = os.getenv("UPDATE_LINK",  "https://t.me/updates")
-OWNER_LINK     = os.getenv("OWNER_LINK",   "https://t.me/owner")
+SUPPORT_LINK   = os.getenv("SUPPORT_LINK", "https://t.me/CarelessxWorld")
+UPDATE_LINK    = os.getenv("UPDATE_LINK",  "https://t.me/CarelessxCoder")
+OWNER_LINK     = os.getenv("OWNER_LINK",   "https://t.me/CarelessxOwner")
 GUIDE_PDF_LINK = os.getenv("GUIDE_PDF_LINK","https://your-guide.com")
 
 # ── MongoDB ────────────────────────────────────────────────────
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+MONGO_URI = os.getenv("MONGO_URI", "MONGO_URI")
 DB_NAME   = "rpg_bot"
 
 # ── Currency ───────────────────────────────────────────────────
-CURRENCY_SYMBOL = "$"
+CURRENCY_SYMBOL = "$" #in dollers
 
 # ── Economy ────────────────────────────────────────────────────
 STARTING_BALANCE     = 500
@@ -27,11 +27,11 @@ DAILY_COOLDOWN       = 86400   # 24h
 CLAIM_MIN            = 100
 CLAIM_MAX            = 500
 CLAIM_COOLDOWN       = 86400   # 24h
-MINE_MIN             = 10
-MINE_MAX             = 100
+MINE_MIN             = 100
+MINE_MAX             = 200
 MINE_COOLDOWN        = 3600    # 1h
-FARM_MIN             = 10
-FARM_MAX             = 100
+FARM_MIN             = 100
+FARM_MAX             = 200
 FARM_COOLDOWN        = 3600    # 1h
 CRIME_COOLDOWN       = 3600    # 1h — fixed (was using MINE_COOLDOWN)
 CRIME_SUCCESS_CHANCE = 0.60
@@ -95,7 +95,7 @@ def get_rarity(price: int) -> str:
     if price >= 10000:  return "🟡 Legendary"
     if price >= 5000:   return "🔵 Rare"
     if price >= 1000:   return "🟣 Epic"
-    if price >= 300:    return "🟢 Uncommon"
+    if price >= 300:    return "🟢 UnCommon"
     return "⚪ Common"
 
 # ── Weapons ────────────────────────────────────────────────────
@@ -123,10 +123,10 @@ WEAPONS = {
 
 # ── Flex & VIP Items ───────────────────────────────────────────
 FLEX_ITEMS = {
-    "cookie":       {"name":"🍪 Cookie",        "emoji":"🍪","price":100,     "desc":"A useless item for rich people."},
-    "starbucks":    {"name":"☕ Starbucks",     "emoji":"☕","price":300,     "desc":"Overpriced coffee. Flex it."},
-    "rose":         {"name":"🌹 Rose",          "emoji":"🌹","price":500,     "desc":"Romantic and expensive."},
-    "vodka":        {"name":"🍾 Vodka",         "emoji":"🍾","price":800,     "desc":"Premium Russian water."},
+    "cookie":       {"name":"🍪 Cookie",        "emoji":"🍪","price":200,     "desc":"A useless item for rich people."},
+    "starbucks":    {"name":"☕ Starbucks",     "emoji":"☕","price":600,     "desc":"Overpriced coffee. Flex it."},
+    "rose":         {"name":"🌹 Rose",          "emoji":"🌹","price":900,     "desc":"Romantic and expensive."},
+    "vodka":        {"name":"🍾 Vodka",         "emoji":"🍾","price":1300,     "desc":"Premium Russian water."},
     "diamond_ring": {"name":"💍 Diamond Ring",  "emoji":"💍","price":2000,    "desc":"Shine on you crazy diamond."},
     "ps5":          {"name":"🎮 PS5",           "emoji":"🎮","price":5000,    "desc":"Next-gen gaming. Pure flex."},
     "computer":     {"name":"🖥️ Computer",      "emoji":"🖥️","price":7000,    "desc":"RGB everything."},
