@@ -120,10 +120,10 @@ async def kill(update: Update, context: ContextTypes.DEFAULT_TYPE):
     wanted_line = f"\n\n🚨 <b>{killer.first_name} is now WANTED!</b>" if nk == WANTED_KILLS_THRESHOLD else ""
 
     caption = f"""⚔️ <b>{killer.first_name}</b> killed <b>{tname}</b>!
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 💰 Wallet loot: {fmt(wallet_loot)}
 🏦 Bank loot: {fmt(bank_loot)}{weapon_line}{bounty_line}
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 💸 Total: {fmt(final_loot)}
 👛 Balance: {fmt(new_kbal)}{wanted_line}"""
 
@@ -169,7 +169,7 @@ async def rob(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await send_with_image(update, gid, IMG_ROB,
         f"""🦹 <b>{u.first_name}</b> robbed <b>{tname}</b>!
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 💰 Stolen: {fmt(amount)}
 👛 Your balance: {fmt(udata['balance'] + amount)}""")
 
@@ -213,7 +213,7 @@ async def protect(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await send_with_image(update, gid, IMG_PROTECT,
         f"""🛡️ <b>Protected!</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 ⏰ Duration: {arg}
 💸 Cost: {fmt(cost)}
 👛 Balance: {fmt(data['balance'] - cost)}""")
@@ -258,8 +258,8 @@ async def heal(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await send_with_image(update, gid, IMG_HEAL,
         f"""💊 <b>Healed!</b>
-━━━━━━━━━━━━━━━
-❤️ HP: {hp} → {new_hp}
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
+🧬 HP: {hp} → {new_hp}
 💸 Cost: {fmt(HEAL_COST)}
 👛 Balance: {fmt(new_bal)}""")
 
@@ -277,7 +277,7 @@ async def hp(update: Update, context: ContextTypes.DEFAULT_TYPE):
         name = u.first_name
 
     shield = " 🛡️" if is_protected(data) else ""
-    status = "🟢 Alive" if data["status"] == "alive" else "💀 Dead"
+    status = "🧬 Alive" if data["status"] == "alive" else "💀 Dead"
     hp_val = data.get("hp", DEFAULT_HP)
 
     await update.message.reply_text(
@@ -325,15 +325,15 @@ async def profile(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(
         f"""👤 <b>{name}'s Profile</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 {'🟢 Alive' if data['status'] == 'alive' else '💀 Dead'}  ❤️ {hp_val}/{DEFAULT_HP} HP
 💰 Wallet: {fmt(data['balance'])}
 🏦 Bank: {fmt(data['bank_balance'])}
 📊 Net Worth: {fmt(nw)}
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 ⚔️ Kills: {data['kills']}  💀 Deaths: {data['deaths']}
 🏆 Wars: {ws['wins']}W / {ws['losses']}L{stag}
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 🗡️ Weapon: {best_w}
 🛡️ Shield: {prot_str}
 💎 Flex: {flex_str}
@@ -356,7 +356,7 @@ async def topkill(update: Update, context: ContextTypes.DEFAULT_TYPE):
         for i, u in enumerate(users)
     )
     await update.message.reply_text(
-        f"☠️ <b>Top Killers</b>\n━━━━━━━━━━━━━━━\n{lines}",
+        f"☠️ <b>Top Killers</b>\n◈ ━━━━━━ ⸙ ━━━━━━ ◈\n{lines}",
         parse_mode="HTML"
     )
 
