@@ -34,26 +34,26 @@ async def propose(update: Update, context: ContextTypes.DEFAULT_TYPE):
     target_id, target_name = await get_target_user(update, context)
 
     if not target_id:
-        await update.message.reply_text("❌ Reply to a user to propose!")
+        await update.message.reply_text("💎 Reply to a user to propose!")
         return
     if target_id == user.id:
-        await update.message.reply_text("❌ You can't propose to yourself! 😂")
+        await update.message.reply_text("📯 You can't propose to yourself! 😂")
         return
 
     proposer = await get_user(user.id, group_id, user.first_name)
     if proposer.get("married_to"):
-        await update.message.reply_text("❌ You're already married! Use /divorce first.")
+        await update.message.reply_text("🤷 You're already married! Use /divorce first.")
         return
 
     target = await get_user(target_id, group_id, target_name)
     if target.get("married_to"):
-        await update.message.reply_text(f"❌ <b>{target_name}</b> is already married!", parse_mode="HTML")
+        await update.message.reply_text(f"😣 <b>{target_name}</b> is already married!", parse_mode="HTML")
         return
 
     tax = int(proposer["balance"] * PROPOSE_TAX)
     if proposer["balance"] < tax:
         await update.message.reply_text(
-            f"❌ Not enough coins!\nProposal tax: {fmt(tax)} (5% of balance)",
+            f"❌ You Poor!\nProposal tax: {fmt(tax)} (5% of balance)",
             parse_mode="HTML"
         )
         return
@@ -104,7 +104,7 @@ async def propose_button_handler(update: Update, context: ContextTypes.DEFAULT_T
             await query.answer("💔 Proposal expired!", show_alert=True)
             return
         if user.id != prop["target_id"]:
-            await query.answer("❌ Not your proposal!", show_alert=True)
+            await query.answer("😒 Not your proposal!", show_alert=True)
             return
 
         proposer = await get_user(prop["proposer_id"], group_id, prop["proposer_name"])
@@ -121,7 +121,7 @@ async def propose_button_handler(update: Update, context: ContextTypes.DEFAULT_T
         await proposals_col.delete_one({"_id": ObjectId(prop_id)})
 
         text = f"""💍 <b>Married!</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 🎉 <b>{prop['proposer_name']}</b> &amp; <b>{prop['target_name']}</b>
 💰 Tax paid: {fmt(prop['tax'])}
 ❤️ Congratulations!"""
@@ -139,7 +139,7 @@ async def propose_button_handler(update: Update, context: ContextTypes.DEFAULT_T
             await query.answer("Already handled!", show_alert=True)
             return
         if user.id != prop["target_id"]:
-            await query.answer("❌ Not your proposal!", show_alert=True)
+            await query.answer("😒 Not your proposal!", show_alert=True)
             return
 
         await proposals_col.delete_one({"_id": ObjectId(prop_id)})
@@ -169,7 +169,7 @@ async def marry(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not data.get("married_to"):
         await update.message.reply_text(
-            f"""💔 <b>{user.first_name}</b> is single!
+            f"""🙃 <b>{user.first_name}</b> is single!
 Use /propose @user to find your match! 💍""",
             parse_mode="HTML"
         )
@@ -205,7 +205,7 @@ async def divorce(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update_user(data["married_to"], group_id, {"married_to": None})
 
     text = f"""💔 <b>Divorced!</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 <b>{user.first_name}</b> and <b>{partner_name}</b> split up.
 💸 Cost: {fmt(DIVORCE_COST)}
 👛 Balance: {fmt(new_balance)}"""
