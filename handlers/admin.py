@@ -121,7 +121,7 @@ def main_keyboard():
             InlineKeyboardButton("🆘 Support", url=SUPPORT_LINK),
             InlineKeyboardButton("📢 Updates", url=UPDATE_LINK),
         ],
-        [InlineKeyboardButton("👑 Owner", url=OWNER_LINK)]
+        [InlineKeyboardButton("👑 Owner", user_id=config.OWNER_ID)]
     ])
 
 
