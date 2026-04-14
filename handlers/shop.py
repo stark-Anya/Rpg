@@ -15,7 +15,7 @@ def shop_main_keyboard():
             InlineKeyboardButton("⚔️ Weapons", callback_data="shop_weapons_0"),
             InlineKeyboardButton("💎 Flex & VIP", callback_data="shop_flex_0")
         ],
-        [InlineKeyboardButton("❌ Close", callback_data="shop_close")]
+        [InlineKeyboardButton("↩️ Close", callback_data="shop_close")]
     ])
 
 
@@ -82,14 +82,14 @@ def flex_page_keyboard(page: int):
 def item_action_keyboard(item_key: str, item_type: str):
     back_data = "shop_weapons_0" if item_type == "w" else "shop_flex_0"
     return InlineKeyboardMarkup([[
-        InlineKeyboardButton("🛒 Buy Now", callback_data=f"shop_buy_{item_type}_{item_key}"),
+        InlineKeyboardButton("💳 Buy Now", callback_data=f"shop_buy_{item_type}_{item_key}"),
         InlineKeyboardButton("◀️ Back", callback_data=back_data)
     ]])
 
 
 async def shop(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = """🏪 <b>Shop</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 ⚔️ <b>Weapons</b>
 └ Boosts kill loot | Lasts 24h
 
@@ -128,7 +128,7 @@ async def shop_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
     if data == "shop_main":
         await query.answer()
         text = """🏪 <b>Shop</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 ⚔️ <b>Weapons</b>
 └ Boosts kill loot | Lasts 24h
 
@@ -154,7 +154,7 @@ Choose a category 👇"""
             f"   └ {fmt(WEAPONS[k]['price'])} · +{int(WEAPONS[k]['kill_loot_bonus']*100)}% loot · {get_rarity(WEAPONS[k]['price'])}"
             for k in chunk
         )
-        text = f"⚔️ <b>Weapons</b>  <i>({page+1}/{pages})</i>\n━━━━━━━━━━━━━━━\n{lines}\n\n<i>Tap to view & buy</i>"
+        text = f"⚔️ <b>Weapons</b>  <i>({page+1}/{pages})</i>\n◈ ━━━━━━ ⸙ ━━━━━━ ◈\n{lines}\n\n<i>Tap to view & buy</i>"
         await edit(text, weapons_page_keyboard(page))
         return
 
@@ -173,7 +173,7 @@ Choose a category 👇"""
             f"   └ {fmt(FLEX_ITEMS[k]['price'])} · {get_rarity(FLEX_ITEMS[k]['price'])} · ♾️ Permanent"
             for k in chunk
         )
-        text = f"💎 <b>Flex & VIP</b>  <i>({page+1}/{pages})</i>\n━━━━━━━━━━━━━━━\n{lines}\n\n<i>Tap to view & buy</i>"
+        text = f"💎 <b>Flex & VIP</b>  <i>({page+1}/{pages})</i>\n◈ ━━━━━━ ⸙ ━━━━━━ ◈\n{lines}\n\n<i>Tap to view & buy</i>"
         await edit(text, flex_page_keyboard(page))
         return
 
@@ -196,14 +196,14 @@ Choose a category 👇"""
                 owned_str = "\n⏰ <b>Your copy expired.</b>"
 
         text = f"""{item['emoji']} <b>{item['name']}</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 📖 {item['desc']}
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 💰 Price: {fmt(item['price'])}
 🌟 Rarity: {get_rarity(item['price'])}
 💥 Kill Loot Bonus: +{int(item['kill_loot_bonus']*100)}%
 ⏱️ Duration: {item['lifetime_hours']}h
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 👛 Your wallet: {fmt(udata['balance'])}{owned_str}"""
         await edit(text, item_action_keyboard(key, "w"))
         return
@@ -221,13 +221,13 @@ Choose a category 👇"""
         owned_str = f"\n✅ <b>You own {owned_qty}x</b>" if owned_qty > 0 else ""
 
         text = f"""{item['emoji']} <b>{item['name']}</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 📖 {item['desc']}
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 💰 Price: {fmt(item['price'])}
 🌟 Rarity: {get_rarity(item['price'])}
 ⏱️ Duration: ♾️ Permanent
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 👛 Your wallet: {fmt(udata['balance'])}{owned_str}"""
         await edit(text, item_action_keyboard(key, "f"))
         return
@@ -320,7 +320,7 @@ async def sell(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(
         f"""💸 <b>Sold!</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 🛍️ {item['name']}
 💰 Received: {fmt(sell_price)} (85% of buy price)
 👛 Balance: {fmt(new_balance)}""",
