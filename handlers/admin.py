@@ -92,36 +92,33 @@ OWNER_TEXT = """👑 <b>Owner Commands</b>
 
 <i>Restricted to bot owner only.</i>"""
 
-WELCOME_TEXT = """{name}
+WELCOME_TEXT = """<blockquote><b>❖ ʜᴇʟʟᴏ {name} 💞</b>
+<b>❖ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ <a href="https://t.me/KiaraGameBot">𒆜 𝑲𝑰𝑨𝑹𝑨 𒆜</a></b>
+<blockquote expandable><b>⚔️ 𝐊ɪʟʟ, ʀᴏʙ & ᴡᴀʀ ᴘʟᴀʏᴇʀs</b>
+<b>💰 𝐌ɪɴᴇ, ғᴀʀᴍ & ᴄᴏᴍᴍɪᴛ ᴄʀɪᴍᴇs</b>
+<b>🏦 𝐄ᴀʀɴ ɪɴᴛᴇʀᴇsᴛ & ᴛᴀᴋᴇ ʟᴏᴀɴs</b>
+<b>🛡️ 𝐁ᴜʏ ᴡᴇᴀᴘᴏɴs & ᴀʀᴍᴏʀ</b>
+<b>💍 𝐌ᴀʀʀʏ ᴏʀ ʙʀᴇᴀᴋ ʜᴇᴀʀᴛ</b></blockquote>
+<blockquote expandable><b>✦ 𝐀ᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴇɴᴊᴏʏ.</b></blockquote>"""
 
-<b>Welcome to RPG Economy Bot!</b>
+HELP_INTRO = f"""<b>❍ ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴘ.</b>
+<b>❍ ғᴏʀ ᴀɴʏ ǫᴜᴇʀɪᴇs, ᴀsᴋ ɪɴ <a href="https://t.me/CarelessxWorld">sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ</a></b>
 
-⚔️ Kill, rob & war players
-💰 Mine, farm & commit crimes
-🏦 Earn interest & take loans
-🛡️ Buy weapons & armor
-💍 Marry or break hearts
-
-<i>Add me to your group to start!</i>"""
-
-HELP_INTRO = f"""📖 <b>Help & Commands</b>
-━━━━━━━━━━━━━━━
-📄 <a href="{GUIDE_PDF_LINK}">Full Guide PDF</a>
-
-Choose a category 👇"""
+<b>❍ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ:</b><code> /</code>
+"""
 
 
 # ── Keyboards ───────────────────────────────────────────────────────────────
 
 def main_keyboard():
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("➕ Add to Group", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-        [InlineKeyboardButton("📖 Commands", callback_data="menu_help")],
+        [InlineKeyboardButton("✙ 𝐀ᴅᴅ 𝐌є 𝐈η 𝐘συʀ 𝐆ʀσυᴘ ✙", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
+        [InlineKeyboardButton("⌯ 𝐇єʟᴘ 𝐀ηᴅ 𝐂ᴏᴍᴍᴧηᴅ𝐬 ⌯", callback_data="menu_help")],
         [
-            InlineKeyboardButton("🆘 Support", url=SUPPORT_LINK),
-            InlineKeyboardButton("📢 Updates", url=UPDATE_LINK),
+            InlineKeyboardButton("⌯ 𝐒ᴜᴘᴘσʀᴛ ⌯", url=SUPPORT_LINK),
+            InlineKeyboardButton("⌯ 𝐔ᴘᴅᴀᴛᴇ ⌯", url=UPDATE_LINK),
         ],
-        [InlineKeyboardButton("👑 Owner", user_id=config.OWNER_ID)]
+        [InlineKeyboardButton("⌯ 𝐌ʏ 𝐌ᴧsᴛᴇʀ ⌯", user_id=config.OWNER_ID)]
     ])
 
 
