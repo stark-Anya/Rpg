@@ -39,13 +39,14 @@ async def bal(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(
         f"""👤 <b>{name}</b>  |  {status}
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 👛 <b>Wallet:</b> {fmt(data['balance'])}
 🏦 <b>Bank:</b> {fmt(data['bank_balance'])}
 ⚔️ <b>Kills:</b> {data['kills']}
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 🗡️ <b>Weapon:</b> {best_w}
 🛡️ <b>Shield:</b> {prot_str}
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 💎 <b>Flex:</b> {flex_str}""",
         parse_mode="HTML"
     )
@@ -66,10 +67,10 @@ async def daily(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update_user(u.id, gid, {"balance": nb, "last_daily": time.time()})
     await send_with_image(update, gid, IMG_DAILY,
         f"""🎁 <b>Daily Claimed!</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 💸 +{fmt(DAILY_REWARD)}
-👛 Wallet: {fmt(nb)}""")
-
+👛 Wallet: {fmt(nb)}
+◈ ━━━━━━ ⸙ ━━━━━━ ◈""")
 
 async def claim(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not await check_economy(update): return
@@ -203,7 +204,7 @@ async def give(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(
         f"""💸 <b>Sent!</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 ➡️ {u.first_name} → {tname}
 💰 Amount: {fmt(amount)}
 🏦 Tax: {fmt(tax)} (5%)""",
@@ -259,6 +260,6 @@ async def toprich(update: Update, context: ContextTypes.DEFAULT_TYPE):
         for i, u in enumerate(users)
     )
     await update.message.reply_text(
-        f"💰 <b>Top Richest</b>\n━━━━━━━━━━━━━━━\n{lines}",
+        f"💰 <b>Top Richest</b>\n◈ ━━━━━━ ⸙ ━━━━━━ ◈\n{lines}",
         parse_mode="HTML"
     )
