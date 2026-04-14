@@ -68,7 +68,7 @@ async def war_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     msg = await update.message.reply_text(
         f"""⚔️ <b>WAR CHALLENGE!</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 🥊 <b>{challenger.first_name}</b> vs <b>{tname}</b>
 💰 <b>Stake:</b> {fmt(amount)} each
 🏆 <b>Winner gets:</b> {fmt(prize)}
@@ -90,7 +90,7 @@ async def _auto_cancel(war_id, gid, cid, amount, msg, context):
         u = await get_user(cid, gid)
         await update_user(cid, gid, {"balance": u["balance"] + amount})
         try:
-            await msg.edit_text(f"⏰ War expired! {fmt(amount)} refunded to {w['challenger_name']}.", reply_markup=None)
+            await msg.edit_text(f"⏰ War Timeout! {fmt(amount)} refunded to {w['challenger_name']}.", reply_markup=None)
         except Exception:
             pass
 
@@ -125,7 +125,7 @@ async def war_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE)
         try:
             await query.edit_message_text(
                 f"""⚔️ <b>WAR ACCEPTED!</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 🥊 <b>{w['challenger_name']}</b> vs <b>{w['target_name']}</b>
 💰 <b>Pot:</b> {fmt(w['amount']*2)}
 
@@ -255,12 +255,12 @@ async def _finish(war_id, gid, context, wid, wname, wweapon, lid, lname, lweapon
     await delete_war(war_id)
 
     caption = f"""⚔️ <b>WAR RESULT!</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 🏆 <b>Winner:</b> {wname}
 <blockquote>Used: {wweapon}</blockquote>
 💀 <b>Loser:</b> {lname}
 <blockquote>Used: {lweapon}</blockquote>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 💸 <b>{wname} wins:</b> {fmt(prize)}
 💸 <b>{lname} lost:</b> {fmt(amount)}{streak_msg}"""
 
@@ -274,7 +274,7 @@ async def warlog(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("⚔️ No wars yet!"); return
     await update.message.reply_text(
         f"""📜 <b>{u.first_name}'s War Log</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 🏆 <b>Wins:</b> {s['wins']} | 💀 <b>Losses:</b> {s['losses']}
 📊 <b>Total:</b> {s['total']}
 💰 <b>Earned:</b> {fmt(s['total_earned'])}
@@ -293,7 +293,7 @@ async def wanted(update: Update, context: ContextTypes.DEFAULT_TYPE):
     lines = "\n".join(f"{i+1}. <b>{r['username']}</b> — {r['kills']} kills 🔫" for i,r in enumerate(recs))
     await update.message.reply_text(
         f"""🚨 <b>WANTED LIST</b>
-━━━━━━━━━━━━━━━
+◈ ━━━━━━ ⸙ ━━━━━━ ◈
 {lines}
 
 💰 <b>Bounty:</b> {fmt(500)} per wanted kill!""", parse_mode="HTML")
