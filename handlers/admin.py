@@ -14,83 +14,83 @@ from config import (
 )
 
 
-ECONOMY_TEXT = f"""💰 <b>Economy Commands</b>
+ECONOMY_TEXT = f"""<blockquote expandable>💰 <b>𝐄ᴄᴏɴᴏᴍʏ 𝐂ᴏᴍᴍᴀɴᴅs ❖</b></blockquote>
+<b>━━━━━━━━━━━━━━━━</b>
+<code>/bal</code> ➻ <b>𝐂ʜᴇᴄᴋ ᴡᴀʟʟᴇᴛ, ʙᴀɴᴋ & sᴛᴀᴛs</b>  
+<code>/daily</code> ➻ <b>𝐂ʟᴀɪᴍ {DAILY_REWARD} ᴄᴏɪɴs ᴇᴠᴇʀʏ 24ʜ</b>  
+<code>/claim</code> ➻ <b>𝐑ᴀɴᴅᴏᴍ 100–500 ɢʀᴏᴜᴘ ʙᴏɴᴜs (ᴅᴀɪʟʏ)</b>  
+<code>/mine</code> ➻ <b>𝐄ᴀʀɴ {MINE_MIN}–{MINE_MAX} ᴄᴏɪɴs (1ʜ ᴄᴏᴏʟᴅᴏᴡɴ)</b>  
+<code>/farm</code> ➻ <b>𝐄ᴀʀɴ {FARM_MIN}–{FARM_MAX} ᴄᴏɪɴs (1ʜ ᴄᴏᴏʟᴅᴏᴡɴ)</b>  
+<code>/crime</code> ➻ <b>60% ᴄʜᴀɴᴄᴇ {CRIME_MIN_REWARD}–{CRIME_MAX_REWARD} ᴄᴏɪɴs (1ʜ ᴄᴏᴏʟᴅᴏᴡɴ)</b>  
+<code>/give [amount]</code> ➻ <b>𝐒ᴇɴᴅ ᴄᴏɪɴs ({int(GIVE_TAX*100)}% ᴛᴀx)</b>  
+<code>/toprich</code> ➻ <b>𝐓ᴏᴘ 10 ʀɪᴄʜᴇsᴛ ᴘʟᴀʏᴇʀs</b>"""
+
+BANK_TEXT = f"""<blockquote expandable>🏦 <b>𝐁ᴀɴᴋ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/bal</code> — Check wallet, bank & stats
-<code>/daily</code> — Claim {DAILY_REWARD} coins every 24h
-<code>/claim</code> — Random 100–500 group bonus (daily)
-<code>/mine</code> — Earn {MINE_MIN}–{MINE_MAX} coins (1h cooldown)
-<code>/farm</code> — Earn {FARM_MIN}–{FARM_MAX} coins (1h cooldown)
-<code>/crime</code> — 60% chance {CRIME_MIN_REWARD}–{CRIME_MAX_REWARD} coins (1h cooldown)
-<code>/give [amount]</code> — Send coins ({int(GIVE_TAX*100)}% tax)
-<code>/toprich</code> — Top 10 richest players"""
+<code>/bank</code> ➻ <b>𝐕ɪᴇᴡ ʙᴀɴᴋ & ʟᴏᴀɴ ɪɴꜰᴏ</b>  
+<code>/deposit [amount]</code> ➻ <b>𝐃ᴇᴘᴏsɪᴛ ᴄᴏɪɴs (+{int(BANK_INTEREST_RATE*100)}%/ᴅᴀʏ ɪɴᴛᴇʀᴇsᴛ)</b>  
+<code>/withdraw [amount]</code> ➻ <b>𝐖ɪᴛʜᴅʀᴀᴡ ꜰʀᴏᴍ ʙᴀɴᴋ</b>  
+<code>/loan [amount]</code> ➻ <b>𝐁ᴏʀʀᴏᴡ ᴜᴘ ᴛᴏ {LOAN_MAX} ᴄᴏɪɴs ({int(LOAN_INTEREST_RATE*100)}%/ᴅᴀʏ ɪɴᴛᴇʀᴇsᴛ)</b>  
+<code>/repay [amount]</code> ➻ <b>𝐑ᴇᴘᴀʏ ᴀᴄᴛɪᴠᴇ ʟᴏᴀɴ</b>
 
-BANK_TEXT = f"""🏦 <b>Bank Commands</b>
+<blockquote>💡 <b>𝐊ᴇᴇᴘ ᴄᴏɪɴs ɪɴ ʙᴀɴᴋ ᴛᴏ ᴇᴀʀɴ ɪɴᴛᴇʀᴇsᴛ ᴅᴀɪʟʏ!</b>  
+⚠️ <b>𝐋ᴏᴀɴs ɢʀᴏᴡ {int(LOAN_INTEREST_RATE*100)}% ᴘᴇʀ ᴅᴀʏ — ʀᴇᴘᴀʏ ꜰᴀsᴛ!</b></blockquote>"""
+
+RPG_TEXT = f"""<blockquote expandable>⚔️ <b>𝐑𝐏𝐆 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/bank</code> — View bank & loan info
-<code>/deposit [amount]</code> — Deposit coins (+{int(BANK_INTEREST_RATE*100)}%/day interest)
-<code>/withdraw [amount]</code> — Withdraw from bank
-<code>/loan [amount]</code> — Borrow up to {LOAN_MAX} coins ({int(LOAN_INTEREST_RATE*100)}%/day interest)
-<code>/repay [amount]</code> — Repay active loan
+<code>/kill @user</code> ➻ <b>𝐊ɪʟʟ & ʟᴏᴏᴛ 90% ᴡᴀʟʟᴇᴛ + 10% ʙᴀɴᴋ</b>  
+<code>/rob [amount] @user</code> ➻ <b>𝐒ᴛᴇᴀʟ ᴇxᴀᴄᴛ ᴀᴍᴏᴜɴᴛ</b>  
+<code>/protect 1d/2d/3d</code> ➻ <b>𝐒ʜɪᴇʟᴅ ꜰʀᴏᴍ ᴀᴛᴛᴀᴄᴋs ({PROTECT_COST_1D}/{PROTECT_COST_2D}/{PROTECT_COST_3D} ᴄᴏɪɴs)</b>  
+<code>/revive</code> ➻ <b>𝐂ᴏᴍᴇ ʙᴀᴄᴋ ᴛᴏ ʟɪꜰᴇ (ꜰʀᴇᴇ)</b>  
+<code>/heal</code> ➻ <b>𝐑ᴇsᴛᴏʀᴇ 50 𝐇𝐏 ꜰᴏʀ 100 ᴄᴏɪɴs</b>  
+<code>/hp</code> ➻ <b>𝐂ʜᴇᴄᴋ 𝐇𝐏 sᴛᴀᴛᴜs</b>  
+<code>/profile</code> ➻ <b>𝐅ᴜʟʟ 𝐑𝐏𝐆 ᴘʀᴏꜰɪʟᴇ</b>  
+<code>/topkill</code> ➻ <b>𝐓ᴏᴘ 10 ᴋɪʟʟᴇʀs</b>  
+<code>/ranking</code> ➻ <b>𝐅ᴜʟʟ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ</b>  
+<code>/wanted</code> ➻ <b>𝐓ᴏᴅᴀʏ'𝐬 ᴍᴏsᴛ ᴅᴀɴɢᴇʀᴏᴜs ᴘʟᴀʏᴇʀs</b>"""
 
-💡 Keep coins in bank to earn interest daily!
-⚠️ Loans grow {int(LOAN_INTEREST_RATE*100)}% per day — repay fast!"""
-
-RPG_TEXT = f"""⚔️ <b>RPG Commands</b>
+SHOP_TEXT = f"""<blockquote expandable>🏪 <b>𝐒ʜᴏᴘ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/kill @user</code> — Kill & loot 90% wallet + 10% bank
-<code>/rob [amount] @user</code> — Steal exact amount
-<code>/protect 1d/2d/3d</code> — Shield from attacks ({PROTECT_COST_1D}/{PROTECT_COST_2D}/{PROTECT_COST_3D} coins)
-<code>/revive</code> — Come back to life (free)
-<code>/heal</code> — Restore 50 HP for 100 coins
-<code>/hp</code> — Check HP status
-<code>/profile</code> — Full RPG profile
-<code>/topkill</code> — Top 10 killers
-<code>/ranking</code> — Full leaderboard
-<code>/wanted</code> — Today's most dangerous players"""
+<code>/shop</code> ➻ <b>𝐁ʀᴏᴡsᴇ ᴡᴇᴀᴘᴏɴs & ꜰʟᴇx ɪᴛᴇᴍs</b>  
+<code>/sell [item]</code> ➻ <b>𝐒ᴇʟʟ ꜰʟᴇx ɪᴛᴇᴍs ({int(SELL_RETURN_PERCENT*100)}% ʀᴇᴛᴜʀɴ)</b>  
+<code>/items</code> ➻ <b>𝐕ɪᴇᴡ ʏᴏᴜʀ ɪɴᴠᴇɴᴛᴏʀʏ</b>
 
-SHOP_TEXT = f"""🏪 <b>Shop Commands</b>
+<blockquote>⚔️ <b>𝐖ᴇᴀᴘᴏɴs</b> ➻ <b>𝐋ᴀsᴛ 24ʜ, ʙᴏᴏsᴛ ᴋɪʟʟ ʟᴏᴏᴛ</b>  
+💎 <b>𝐅ʟᴇx & 𝐕𝐈𝐏</b> ➻ <b>𝐏ᴇʀᴍᴀɴᴇɴᴛ ᴄᴏʟʟᴇᴄᴛɪʙʟᴇs</b></blockquote>"""
+
+WAR_TEXT = """<blockquote expandable>🥊 <b>𝐖ᴀʀ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/shop</code> — Browse weapons & flex items
-<code>/sell [item]</code> — Sell flex items ({int(SELL_RETURN_PERCENT*100)}% return)
-<code>/items</code> — View your inventory
+<code>/war @user [amount]</code> ➻ <b>𝐂ʜᴀʟʟᴇɴɢᴇ ᴛᴏ ᴀ sᴛᴀᴋᴇᴅ ᴡᴀʀ</b>  
+<code>/warlog</code> ➻ <b>𝐘ᴏᴜʀ ᴡᴀʀ ʜɪsᴛᴏʀʏ & sᴛᴀᴛs</b>
 
-⚔️ <b>Weapons</b> — Last 24h, boost kill loot
-💎 <b>Flex & VIP</b> — Permanent collectibles"""
+<blockquote>⚔️ <b>𝐇ɪɢʜᴇʀ ᴡᴇᴀᴘᴏɴ ᴘʀɪᴄᴇ = ʙᴇᴛᴛᴇʀ ᴄʜᴀɴᴄᴇ ᴏꜰ ᴡɪɴɴɪɴɢ</b>  
+🪙 <b>𝐃ʀᴀᴡ = ᴄᴏɪɴ ꜰʟɪᴘ ᴅᴇᴄɪᴅᴇs ᴡɪɴɴᴇʀ</b>  
+🏆 <b>𝐖ɪɴɴᴇʀ ᴛᴀᴋᴇs 90% ᴏꜰ ᴘᴏᴛ</b></blockquote>"""
 
-WAR_TEXT = """🥊 <b>War Commands</b>
+SOCIAL_TEXT = """<blockquote expandable>💍 <b>𝐒ᴏᴄɪᴀʟ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/war @user [amount]</code> — Challenge to a staked war
-<code>/warlog</code> — Your war history & stats
+<code>/propose @user</code> ➻ <b>𝐒ᴇɴᴅ ᴀ ᴍᴀʀʀɪᴀɢᴇ ᴘʀᴏᴘᴏsᴀʟ (5% ᴛᴀx)</b>  
+<code>/marry</code> ➻ <b>𝐂ʜᴇᴄᴋ ᴍᴀʀʀɪᴀɢᴇ sᴛᴀᴛᴜs</b>  
+<code>/divorce</code> ➻ <b>𝐄ɴᴅ ᴍᴀʀʀɪᴀɢᴇ (ᴄᴏsᴛs 2000 ᴄᴏɪɴs)</b>  
+<code>/couple</code> ➻ <b>𝐑ᴀɴᴅᴏᴍ ɢʀᴏᴜᴘ ᴍᴀᴛᴄʜᴍᴀᴋɪɴɢ</b>  
+<code>/crush @user</code> ➻ <b>𝐒ᴇɴᴅ ᴀ ꜰᴜɴ ᴄʀᴜsʜ ᴍᴇssᴀɢᴇ</b>  
+<code>/love @user</code> ➻ <b>𝐒ᴇɴᴅ ᴀ ʟᴏᴠᴇ ᴍᴇssᴀɢᴇ</b>"""
 
-⚔️ Higher weapon price = better chance of winning
-🪙 Draw = coin flip decides winner
-🏆 Winner takes 90% of pot"""
-
-SOCIAL_TEXT = """💍 <b>Social Commands</b>
+GROUP_TEXT = """<blockquote expandable>⛩️ <b>𝐆ʀᴏᴜᴘ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/propose @user</code> — Send a marriage proposal (5% tax)
-<code>/marry</code> — Check marriage status
-<code>/divorce</code> — End marriage (costs 2000 coins)
-<code>/couple</code> — Random group matchmaking
-<code>/crush @user</code> — Send a fun crush message
-<code>/love @user</code> — Send a love message"""
+<code>/ping</code> ➻ <b>𝐁ᴏᴛ sᴛᴀᴛᴜs & ʟᴀᴛᴇɴᴄʏ</b>  
+<code>/open</code> ➻ <b>𝐄ɴᴀʙʟᴇ ᴇᴄᴏɴᴏᴍʏ <i>(ᴀᴅᴍɪɴs)</i></b>  
+<code>/close</code> ➻ <b>𝐃ɪsᴀʙʟᴇ ᴇᴄᴏɴᴏᴍʏ <i>(ᴀᴅᴍɪɴs)</i></b>  
+<code>/toprich</code> ➻ <b>𝐓ᴏᴘ 10 ʀɪᴄʜᴇsᴛ</b>  
+<code>/topkill</code> ➻ <b>𝐓ᴏᴘ 10 ᴋɪʟʟᴇʀs</b>  
+<code>/ranking</code> ➻ <b>𝐅ᴜʟʟ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ</b>"""
 
-GROUP_TEXT = """⛩️ <b>Group Commands</b>
+OWNER_TEXT = """<blockquote expandable>👑 <b>𝐎ᴡɴᴇʀ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/ping</code> — Bot status & latency
-<code>/open</code> — Enable economy <i>(admins)</i>
-<code>/close</code> — Disable economy <i>(admins)</i>
-<code>/toprich</code> — Top 10 richest
-<code>/topkill</code> — Top 10 killers
-<code>/ranking</code> — Full leaderboard"""
+<code>/transfer @user [amount]</code> ➻ <b>𝐀ᴅᴅ ᴄᴏɪɴs ᴛᴏ ᴀɴʏ ᴜsᴇʀ (ɴᴏ ᴛᴀx)</b>  
+<code>/open</code> / <code>/close</code> ➻ <b>𝐂ᴏɴᴛʀᴏʟ ᴇᴄᴏɴᴏᴍʏ ɪɴ ᴀɴʏ ɢʀᴏᴜᴘ</b>
 
-OWNER_TEXT = """👑 <b>Owner Commands</b>
-━━━━━━━━━━━━━━━
-<code>/transfer @user [amount]</code> — Add coins to any user (no tax)
-<code>/open</code> / <code>/close</code> — Control economy in any group
-
-<i>Restricted to bot owner only.</i>"""
+<i><b>𝐑ᴇsᴛʀɪᴄᴛᴇᴅ ᴛᴏ ʙᴏᴛ ᴏᴡɴᴇʀ ᴏɴʟʏ.</b></i>"""
 
 WELCOME_TEXT = """<blockquote><b>❖ ʜᴇʟʟᴏ {name} 💞</b>
 <b>❖ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ <a href="https://t.me/KiaraGameBot">𒆜 𝑲𝑰𝑨𝑹𝑨 𒆜</a></b>
@@ -125,27 +125,30 @@ def main_keyboard():
 def help_keyboard(user_id: int):
     buttons = [
         [
-            InlineKeyboardButton("💰 Economy", callback_data="cmd_economy"),
-            InlineKeyboardButton("🏦 Bank", callback_data="cmd_bank"),
+            InlineKeyboardButton("💰 𝐄ᴄᴏɴᴏᴍʏ ⌯", callback_data="cmd_economy"),
+            InlineKeyboardButton("🏦 𝐁ᴀɴᴋ ⌯", callback_data="cmd_bank"),
         ],
         [
-            InlineKeyboardButton("⚔️ RPG", callback_data="cmd_rpg"),
-            InlineKeyboardButton("🥊 War", callback_data="cmd_war"),
+            InlineKeyboardButton("⚔️ 𝐑ᴘɢ ⌯", callback_data="cmd_rpg"),
+            InlineKeyboardButton("🥊 𝐖ᴀʀ ⌯", callback_data="cmd_war"),
         ],
         [
-            InlineKeyboardButton("🏪 Shop", callback_data="cmd_shop"),
-            InlineKeyboardButton("💍 Social", callback_data="cmd_social"),
+            InlineKeyboardButton("🏪 𝐒ʜᴏᴘ ⌯", callback_data="cmd_shop"),
+            InlineKeyboardButton("💍 𝐒ᴏᴄɪᴀʟ ⌯", callback_data="cmd_social"),
         ],
-        [InlineKeyboardButton("⛩️ Group", callback_data="cmd_group")],
+        [
+            InlineKeyboardButton("⛩️ 𝐆ʀᴏᴜᴘ ⌯", callback_data="cmd_group"),
+            InlineKeyboardButton("🎵 𝐌ᴜ𝐬ɪᴄ ⌯", url="https://t.me/Kellymusicebot?start=start"),
+        ],
     ]
     if user_id == OWNER_ID:
-        buttons.append([InlineKeyboardButton("👑 Owner", callback_data="cmd_owner")])
-    buttons.append([InlineKeyboardButton("◀️ Back", callback_data="menu_back")])
+        buttons.append([InlineKeyboardButton("👑 𝐎ᴡɴᴇʀ ⌯", callback_data="cmd_owner")])
+    buttons.append([InlineKeyboardButton("⌯ 𝐁ᴀᴄᴋ ⌯", callback_data="menu_back")])
     return InlineKeyboardMarkup(buttons)
 
 
 def back_kb():
-    return InlineKeyboardMarkup([[InlineKeyboardButton("◀️ Back", callback_data="menu_help")]])
+    return InlineKeyboardMarkup([[InlineKeyboardButton("⌯ 𝐁ᴀᴄᴋ ⌯", callback_data="menu_help")]])
 
 
 # ── Handlers ────────────────────────────────────────────────────────────────
