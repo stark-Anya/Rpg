@@ -12,10 +12,10 @@ FLEX_PER_PAGE    = 6
 def shop_main_keyboard():
     return InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("⚔️ Weapons", callback_data="shop_weapons_0"),
-            InlineKeyboardButton("💎 Flex & VIP", callback_data="shop_flex_0")
+            InlineKeyboardButton("⚔️ 𝐖𝐞𝐚𝐩𝐨𝐧𝐬", callback_data="shop_weapons_0"),
+            InlineKeyboardButton("💎 𝐕𝐈𝐏 𝐅𝐥𝐞𝐱 𝐙𝐨𝐧𝐞", callback_data="shop_flex_0")
         ],
-        [InlineKeyboardButton("↩️ Close", callback_data="shop_close")]
+        [InlineKeyboardButton("🔙 𝐂𝐥𝐨𝐬𝐞", callback_data="shop_close")]
     ])
 
 
@@ -39,13 +39,13 @@ def weapons_page_keyboard(page: int):
 
     nav = []
     if page > 0:
-        nav.append(InlineKeyboardButton("◀️ Prev", callback_data=f"shop_weapons_{page-1}"))
+        nav.append(InlineKeyboardButton("◀️ 𝐏ʀᴇᴠ", callback_data=f"shop_weapons_{page-1}"))
     if start + WEAPONS_PER_PAGE < len(keys):
-        nav.append(InlineKeyboardButton("Next ▶️", callback_data=f"shop_weapons_{page+1}"))
+        nav.append(InlineKeyboardButton("𝐍ᴇxᴛ ▶️", callback_data=f"shop_weapons_{page+1}"))
     if nav:
         rows.append(nav)
 
-    rows.append([InlineKeyboardButton("🏪 Back to Shop", callback_data="shop_main")])
+    rows.append([InlineKeyboardButton("🏪 𝐁ᴀᴄᴋ 𝐓ᴏ 𝐒ʜᴏᴘ", callback_data="shop_main")])
     return InlineKeyboardMarkup(rows)
 
 
@@ -69,13 +69,13 @@ def flex_page_keyboard(page: int):
 
     nav = []
     if page > 0:
-        nav.append(InlineKeyboardButton("◀️ Prev", callback_data=f"shop_flex_{page-1}"))
+        nav.append(InlineKeyboardButton("◀️ 𝐏ʀᴇᴠ", callback_data=f"shop_flex_{page-1}"))
     if start + FLEX_PER_PAGE < len(keys):
-        nav.append(InlineKeyboardButton("Next ▶️", callback_data=f"shop_flex_{page+1}"))
+        nav.append(InlineKeyboardButton("𝐍ᴇxᴛ ▶️", callback_data=f"shop_flex_{page+1}"))
     if nav:
         rows.append(nav)
 
-    rows.append([InlineKeyboardButton("🏪 Back to Shop", callback_data="shop_main")])
+    rows.append([InlineKeyboardButton("🏪 𝐁ᴀᴄᴋ 𝐓ᴏ 𝐒ʜᴏᴘ", callback_data="shop_main")])
     return InlineKeyboardMarkup(rows)
 
 
