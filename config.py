@@ -4,8 +4,8 @@ load_dotenv()
 
 # ── Bot ────────────────────────────────────────────────────────
 BOT_TOKEN     = os.getenv("BOT_TOKEN", "BOT_TOKEN")
-OWNER_ID      = int(os.getenv("OWNER_ID", "OWNER_ID"))
-BOT_USERNAME  = os.getenv("BOT_USERNAME", "") #WITHOUT @@@@@
+OWNER_ID      = int(os.getenv("OWNER_ID", "5864182070"))
+BOT_USERNAME  = os.getenv("BOT_USERNAME", "KiaraGameBot") #WITHOUT @@@@@
 
 # ── Links ──────────────────────────────────────────────────────
 SUPPORT_LINK   = os.getenv("SUPPORT_LINK", "https://t.me/CarelessxWorld")
@@ -71,14 +71,14 @@ PROPOSE_TAX  = 0.05
 DIVORCE_COST = 2000
 
 # ── Images ─────────────────────────────────────────────────────
-IMG_WELCOME  = os.getenv("IMG_WELCOME",  "")
-IMG_KILL     = os.getenv("IMG_KILL",     "")
+IMG_WELCOME  = os.getenv("IMG_WELCOME",  "https://o.uguu.se/CloZzFOg.jpg")
+IMG_KILL     = os.getenv("IMG_KILL",     "https://h.uguu.se/AEcnTjiW.jpg")
 IMG_ROB      = os.getenv("IMG_ROB",      "")
-IMG_WAR_WIN  = os.getenv("IMG_WAR_WIN",  "")
+IMG_WAR_WIN  = os.getenv("IMG_WAR_WIN",  "https://d.uguu.se/hTRlxHjc.jpg")
 IMG_WAR_DRAW = os.getenv("IMG_WAR_DRAW", "")
-IMG_PROPOSE  = os.getenv("IMG_PROPOSE",  "")
-IMG_MARRY    = os.getenv("IMG_MARRY",    "")
-IMG_DIVORCE  = os.getenv("IMG_DIVORCE",  "")
+IMG_PROPOSE  = os.getenv("IMG_PROPOSE",  "https://o.uguu.se/tKXeGsNj.jpg")
+IMG_MARRY    = os.getenv("IMG_MARRY",    "https://o.uguu.se/kzzLEkrf.jpg")
+IMG_DIVORCE  = os.getenv("IMG_DIVORCE",  "https://h.uguu.se/wFuCeCPC.jpg")
 IMG_DAILY    = os.getenv("IMG_DAILY",    "")
 IMG_CRIME    = os.getenv("IMG_CRIME",    "")
 IMG_MINE     = os.getenv("IMG_MINE",     "")
