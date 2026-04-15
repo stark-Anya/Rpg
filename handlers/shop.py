@@ -14,10 +14,10 @@ FLEX_PER_PAGE    = 6
 def main_keyboard():
     return InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("⚔️ Weapons",    callback_data="shop_weapons_0"),
-            InlineKeyboardButton("💎 Flex & VIP", callback_data="shop_flex_0"),
+            InlineKeyboardButton("⚔️ 𝐖𝐞𝐩𝐨𝐧𝐬",    callback_data="shop_weapons_0"),
+            InlineKeyboardButton("💎 𝐅𝐥𝐞𝐱 & 𝐕𝐈𝐏", callback_data="shop_flex_0"),
         ],
-        [InlineKeyboardButton("❌ Close", callback_data="shop_close")]
+        [InlineKeyboardButton("❌ 𝐂𝐥𝐨𝐬𝐞", callback_data="shop_close")]
     ])
 
 
@@ -42,12 +42,12 @@ def weapons_page_keyboard(page: int, inventory: dict, balance: int):
 
     nav = []
     if page > 0:
-        nav.append(InlineKeyboardButton("◀️ Prev", callback_data=f"shop_weapons_{page-1}"))
+        nav.append(InlineKeyboardButton("◀ 𝐏𝐫𝐞𝐯", callback_data=f"shop_weapons_{page-1}"))
     if start + WEAPONS_PER_PAGE < len(keys):
-        nav.append(InlineKeyboardButton("Next ▶️", callback_data=f"shop_weapons_{page+1}"))
+        nav.append(InlineKeyboardButton("𝐍𝐞𝐱𝐭 ▶", callback_data=f"shop_weapons_{page+1}"))
     if nav:
         rows.append(nav)
-    rows.append([InlineKeyboardButton("🏠 Main Menu", callback_data="shop_main")])
+    rows.append([InlineKeyboardButton("🏠 𝐌𝐚𝐢𝐦 𝐌𝐞𝐧𝐮", callback_data="shop_main")])
     return InlineKeyboardMarkup(rows)
 
 
@@ -72,40 +72,40 @@ def flex_page_keyboard(page: int, inventory: dict, balance: int):
 
     nav = []
     if page > 0:
-        nav.append(InlineKeyboardButton("◀️ Prev", callback_data=f"shop_flex_{page-1}"))
+        nav.append(InlineKeyboardButton("◀ 𝐏𝐫𝐞𝐯", callback_data=f"shop_flex_{page-1}"))
     if start + FLEX_PER_PAGE < len(keys):
-        nav.append(InlineKeyboardButton("Next ▶️", callback_data=f"shop_flex_{page+1}"))
+        nav.append(InlineKeyboardButton("𝐍𝐞𝐱𝐭 ▶", callback_data=f"shop_flex_{page+1}"))
     if nav:
         rows.append(nav)
-    rows.append([InlineKeyboardButton("🏠 Main Menu", callback_data="shop_main")])
+    rows.append([InlineKeyboardButton("🏠 𝐌𝐚𝐢𝐧 𝐌𝐞𝐧𝐮", callback_data="shop_main")])
     return InlineKeyboardMarkup(rows)
 
 
 def weapon_action_kb(item_key: str, can_buy: bool, is_owned: bool):
     if is_owned:
-        buy_btn = InlineKeyboardButton("✅ Owned", callback_data=f"shop_owned_w_{item_key}")
+        buy_btn = InlineKeyboardButton("✅ 𝐎𝐰𝐧𝐞𝐝", callback_data=f"shop_owned_w_{item_key}")
     elif can_buy:
-        buy_btn = InlineKeyboardButton("🛒 Buy Now", callback_data=f"shop_buy_w_{item_key}")
+        buy_btn = InlineKeyboardButton("🛒 𝐁𝐮𝐲 𝐍𝐨𝐰", callback_data=f"shop_buy_w_{item_key}")
     else:
-        buy_btn = InlineKeyboardButton("❌ Can't Afford", callback_data=f"shop_poor_w_{item_key}")
+        buy_btn = InlineKeyboardButton("❌ 𝐂𝐚𝐧'𝐭 𝐀𝐟𝐟𝐨𝐫𝐝", callback_data=f"shop_poor_w_{item_key}")
 
     return InlineKeyboardMarkup([
         [buy_btn],
-        [InlineKeyboardButton("◀️ Back", callback_data="shop_weapons_0")]
+        [InlineKeyboardButton("◀️ 𝐁𝐚𝐜𝐤", callback_data="shop_weapons_0")]
     ])
 
 
 def flex_action_kb(item_key: str, can_buy: bool, is_owned: bool):
     if is_owned:
-        buy_btn = InlineKeyboardButton("✅ Owned", callback_data=f"shop_owned_f_{item_key}")
+        buy_btn = InlineKeyboardButton("✅ 𝐎𝐰𝐧𝐞𝐝", callback_data=f"shop_owned_f_{item_key}")
     elif can_buy:
-        buy_btn = InlineKeyboardButton("🛒 Buy Now", callback_data=f"shop_buy_f_{item_key}")
+        buy_btn = InlineKeyboardButton("🛒 𝐁𝐨𝐮 𝐍𝐨𝐰", callback_data=f"shop_buy_f_{item_key}")
     else:
-        buy_btn = InlineKeyboardButton("❌ Can't Afford", callback_data=f"shop_poor_f_{item_key}")
+        buy_btn = InlineKeyboardButton("❌ 𝐂𝐚𝐧'𝐭 𝐀𝐟𝐟𝐨𝐫𝐝", callback_data=f"shop_poor_f_{item_key}")
 
     return InlineKeyboardMarkup([
         [buy_btn],
-        [InlineKeyboardButton("◀️ Back", callback_data="shop_flex_0")]
+        [InlineKeyboardButton("◀️ 𝐁𝐚𝐜𝐤", callback_data="shop_flex_0")]
     ])
 
 
@@ -116,12 +116,12 @@ async def shop(update: Update, context: ContextTypes.DEFAULT_TYPE):
     group_id = update.effective_chat.id
     udata    = await get_user(user.id, group_id, user.first_name)
 
-    text = f"""🛒 <b>𝐌𝐚𝐫𝐢𝐞 𝐌𝐚𝐫𝐤𝐞𝐭𝐩𝐥𝐚𝐜𝐞</b>
+    text = f"""🛒 <b>𝐊𝐢𝐚𝐫𝐚 𝐌𝐚𝐫𝐤𝐞𝐭𝐩𝐥𝐚𝐜𝐞</b>
 ━━━━━━━━━━━━━━━
 👤 Customer: <b>{user.first_name}</b>
 👛 Wallet: <b>{fmt(udata['balance'])}</b>
 ━━━━━━━━━━━━━━━
-Select a category to browse our goods!"""
+<u>Select a category to browse our goods!</u>"""
 
     await send_with_image(update, group_id, IMG_SHOP, text, reply_markup=main_keyboard())
 
@@ -159,12 +159,12 @@ async def shop_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
     # ── Main Menu ──────────────────────────────────────────────
     if data == "shop_main":
         await query.answer()
-        text = f"""🛒 <b>𝐌𝐚𝐫𝐢𝐞 𝐌𝐚𝐫𝐤𝐞𝐭𝐩𝐥𝐚𝐜𝐞</b>
+        text = f"""🛒 <b>𝐊𝐢𝐚𝐫𝐚 𝐌𝐚𝐫𝐤𝐞𝐭𝐩𝐥𝐚𝐜𝐞</b>
 ━━━━━━━━━━━━━━━
 👤 Customer: <b>{user.first_name}</b>
 👛 Wallet: <b>{fmt(balance)}</b>
 ━━━━━━━━━━━━━━━
-Select a category to browse our goods!"""
+<u>Select a category to browse our goods!</u>"""
         await edit(text, main_keyboard())
         return
 
@@ -249,7 +249,7 @@ Pure status symbols.
 
     # ── Can't Afford popup ─────────────────────────────────────
     if data.startswith("shop_poor_"):
-        await query.answer("📉 You are too poor for this!", show_alert=True)
+        await query.answer("📉 ʏᴏᴜ ᴀʀᴇ ᴛᴏᴏ ᴘᴏᴏʀ ᴛᴏ ʙᴜʏ ᴛʜɪs!", show_alert=True)
         return
 
     # ── Already Owned popup ────────────────────────────────────
@@ -257,9 +257,9 @@ Pure status symbols.
         parts = data.split("_")
         itype = parts[2]
         if itype == "w":
-            await query.answer("✅ You already own this weapon! Wait for it to expire.", show_alert=True)
+            await query.answer("✅ ʏᴏᴜ ᴀʀᴇ ᴀʟʀᴇᴀᴅʏ ᴏᴡɴ ᴛʜɪs ᴡᴇᴘᴏɴ ! ᴡᴀɪᴛ ꜰᴏʀ ɪᴛ ᴛᴏ ᴇxᴘɪʀᴇ.", show_alert=True)
         else:
-            await query.answer("💎 You already own this. Check your inventory 🎒", show_alert=True)
+            await query.answer("💎 ʏᴏᴜ ᴀʀᴇ ᴀʟʀᴇᴅʏ ᴏᴡɴ ᴛʜɪs. cʜᴇᴀᴋ ʏᴏᴜʀ ɪɴᴠᴇɴᴛᴏʀʏ🎒", show_alert=True)
         return
 
     # ── Buy ────────────────────────────────────────────────────
@@ -281,15 +281,15 @@ Pure status symbols.
         if itype == "w":
             owned = inventory.get(ikey, {})
             if owned.get("qty", 0) > 0 and is_weapon_valid(owned):
-                await query.answer("✅ You already own this weapon!", show_alert=True)
+                await query.answer("✅ ʏᴏᴜ ᴀʀᴇ ᴀʟʀᴇᴅʏ ᴏᴡɴᴇʀ ᴛʜɪs ᴡᴇᴘᴏɴ !", show_alert=True)
                 return
         else:
             if inventory.get(ikey, {}).get("qty", 0) > 0:
-                await query.answer("💎 Already owned!", show_alert=True)
+                await query.answer("💎 ᴀʟʀᴇᴀᴅʏ ᴏᴡɴᴇᴅ!", show_alert=True)
                 return
 
         if balance2 < item["price"]:
-            await query.answer("📉 You are too poor for this!", show_alert=True)
+            await query.answer("📉 ʏᴏᴜ ᴀʀᴇ ᴛᴏᴏ ᴘᴏᴏʀ ꜰᴏʀ ᴛʜɪs !", show_alert=True)
             return
 
         if itype == "w":
@@ -362,7 +362,7 @@ async def sell(update: Update, context: ContextTypes.DEFAULT_TYPE):
     item = FLEX_ITEMS.get(ikey)
 
     if not item:
-        await update.message.reply_text("❌ Only Flex & VIP items can be sold!", parse_mode="HTML")
+        await update.message.reply_text("❌ ᴏɴʟʏ 𝐅𝐥𝐞𝐱 & 𝐕𝐈𝐏 ɪᴛᴇᴍ cᴀɴ ʙᴇ sᴏʟᴅ !", parse_mode="HTML")
         return
 
     udata     = await get_user(user.id, group_id, user.first_name)
@@ -370,7 +370,7 @@ async def sell(update: Update, context: ContextTypes.DEFAULT_TYPE):
     owned     = inventory.get(ikey, {})
 
     if not owned or owned.get("qty", 0) <= 0:
-        await update.message.reply_text("❌ You don't own this item!", parse_mode="HTML")
+        await update.message.reply_text("❌ ʏᴏᴜ ᴅᴏɴ'ᴛ ᴏᴡɴᴇᴅ ᴛʜɪs ɪᴛᴇᴍ !", parse_mode="HTML")
         return
 
     sell_price = int(item["price"] * SELL_RETURN_PERCENT)
