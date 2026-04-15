@@ -53,12 +53,12 @@ HEAL_COST              = 100
 HEAL_AMOUNT            = 50
 KILL_LOOT_PERCENT      = 0.90
 KILL_BANK_PERCENT      = 0.10
-PROTECT_COST_1D        = 100
-PROTECT_COST_2D        = 180
-PROTECT_COST_3D        = 250
+PROTECT_COST_1D        = 200
+PROTECT_COST_2D        = 300
+PROTECT_COST_3D        = 450
 PROTECT_MIN_BALANCE    = 700
 WANTED_KILLS_THRESHOLD = 10
-WANTED_BOUNTY          = 500
+WANTED_BOUNTY          = 1000
 SELL_RETURN_PERCENT    = 0.85
 
 # ── War ────────────────────────────────────────────────────────
