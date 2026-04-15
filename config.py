@@ -22,9 +22,9 @@ CURRENCY_SYMBOL = "$" #in dollers
 
 # ── Economy ────────────────────────────────────────────────────
 STARTING_BALANCE     = 500
-DAILY_REWARD         = 200
+DAILY_REWARD         = 400
 DAILY_COOLDOWN       = 86400   # 24h
-CLAIM_MIN            = 100
+CLAIM_MIN            = 200
 CLAIM_MAX            = 500
 CLAIM_COOLDOWN       = 86400   # 24h
 MINE_MIN             = 100
@@ -44,7 +44,7 @@ GIVE_TAX             = 0.05    # 5%
 # ── Bank ───────────────────────────────────────────────────────
 BANK_INTEREST_RATE  = 0.05     # 5% daily on deposits
 BANK_MIN_DEPOSIT    = 100      # min deposit amount
-LOAN_MAX            = 1000
+LOAN_MAX            = 10000
 LOAN_INTEREST_RATE  = 0.10     # 10% daily on loans
 
 # ── RPG ────────────────────────────────────────────────────────
@@ -91,11 +91,11 @@ IMG_HEAL     = os.getenv("IMG_HEAL",     "")
 
 # ── Rarity ─────────────────────────────────────────────────────
 def get_rarity(price: int) -> str:
-    if price >= 50000:  return "🔴 Godly"
-    if price >= 10000:  return "🟡 Legendary"
-    if price >= 5000:   return "🔵 Rare"
-    if price >= 1000:   return "🟣 Epic"
-    if price >= 300:    return "🟢 UnCommon"
+    if price >= 500000:  return "🔴 Godly"
+    if price >= 100000:  return "🟡 Legendary"
+    if price >= 50000:   return "🔵 Rare"
+    if price >= 10000:   return "🟣 Epic"
+    if price >= 5000:    return "🟢 UnCommon"
     return "⚪ Common"
 
 # ── Weapons ────────────────────────────────────────────────────
@@ -104,12 +104,12 @@ WEAPONS = {
     "brick":      {"name":"🧱 Brick",       "emoji":"🧱","price":800,    "kill_loot_bonus":0.02,"lifetime_hours":24,"desc":"A solid brick to the face."},
     "slingshot":  {"name":"🏹 Slingshot",   "emoji":"🏹","price":1200,   "kill_loot_bonus":0.03,"lifetime_hours":24,"desc":"Old but deadly."},
     "knife":      {"name":"🔪 Knife",       "emoji":"🔪","price":2000,   "kill_loot_bonus":0.05,"lifetime_hours":24,"desc":"Sharp and quick."},
-    "bat":        {"name":"🏏 Bat",         "emoji":"🏏","price":2500,   "kill_loot_bonus":0.06,"lifetime_hours":24,"desc":"Home run or head run?"},
-    "axe":        {"name":"🪓 Axe",         "emoji":"🪓","price":3500,   "kill_loot_bonus":0.08,"lifetime_hours":24,"desc":"Woodcutting... people."},
-    "hammer":     {"name":"🔨 Hammer",      "emoji":"🔨","price":4000,   "kill_loot_bonus":0.09,"lifetime_hours":24,"desc":"Thor's budget version."},
-    "pistol":     {"name":"🔫 Pistol",      "emoji":"🔫","price":5000,   "kill_loot_bonus":0.11,"lifetime_hours":24,"desc":"A classic sidearm."},
+    "bat":        {"name":"🏏 Bat",         "emoji":"🏏","price":3000,   "kill_loot_bonus":0.06,"lifetime_hours":24,"desc":"Home run or head run?"},
+    "axe":        {"name":"🪓 Axe",         "emoji":"🪓","price":4000,   "kill_loot_bonus":0.08,"lifetime_hours":24,"desc":"Woodcutting... people."},
+    "hammer":     {"name":"🔨 Hammer",      "emoji":"🔨","price":5000,   "kill_loot_bonus":0.09,"lifetime_hours":24,"desc":"Thor's budget version."},
+    "pistol":     {"name":"🔫 Pistol",      "emoji":"🔫","price":6000,   "kill_loot_bonus":0.11,"lifetime_hours":24,"desc":"A classic sidearm."},
     "chainsaw":   {"name":"⛏️ Chainsaw",    "emoji":"⛏️","price":7000,   "kill_loot_bonus":0.14,"lifetime_hours":24,"desc":"Vroom vroom. RIP."},
-    "shotgun":    {"name":"💥 Shotgun",     "emoji":"💥","price":9000,   "kill_loot_bonus":0.17,"lifetime_hours":24,"desc":"One shot, many problems."},
+    "shotgun":    {"name":"💥 Shotgun",     "emoji":"💥","price":10000,   "kill_loot_bonus":0.17,"lifetime_hours":24,"desc":"One shot, many problems."},
     "ak47":       {"name":"🔰 AK-47",       "emoji":"🔰","price":12000,  "kill_loot_bonus":0.22,"lifetime_hours":24,"desc":"The people's weapon."},
     "katana":     {"name":"⚔️ Katana",      "emoji":"⚔️","price":15000,  "kill_loot_bonus":0.27,"lifetime_hours":24,"desc":"Slice and dice."},
     "minigun":    {"name":"🌀 Minigun",     "emoji":"🌀","price":20000,  "kill_loot_bonus":0.33,"lifetime_hours":24,"desc":"Spray and pray."},
@@ -124,21 +124,23 @@ WEAPONS = {
 # ── Flex & VIP Items ───────────────────────────────────────────
 FLEX_ITEMS = {
     "cookie":       {"name":"🍪 Cookie",        "emoji":"🍪","price":200,     "desc":"A useless item for rich people."},
-    "starbucks":    {"name":"☕ Starbucks",     "emoji":"☕","price":600,     "desc":"Overpriced coffee. Flex it."},
-    "rose":         {"name":"🌹 Rose",          "emoji":"🌹","price":900,     "desc":"Romantic and expensive."},
-    "vodka":        {"name":"🍾 Vodka",         "emoji":"🍾","price":1300,     "desc":"Premium Russian water."},
-    "diamond_ring": {"name":"💍 Diamond Ring",  "emoji":"💍","price":2000,    "desc":"Shine on you crazy diamond."},
-    "ps5":          {"name":"🎮 PS5",           "emoji":"🎮","price":5000,    "desc":"Next-gen gaming. Pure flex."},
-    "computer":     {"name":"🖥️ Computer",      "emoji":"🖥️","price":7000,    "desc":"RGB everything."},
-    "macbook":      {"name":"💻 MacBook",       "emoji":"💻","price":10000,   "desc":"For the elite."},
-    "iphone":       {"name":"📱 iPhone",        "emoji":"📱","price":12000,   "desc":"Latest model. Obviously."},
-    "rolex":        {"name":"⌚ Rolex",          "emoji":"⌚","price":20000,   "desc":"Time is money, literally."},
-    "suzuki":       {"name":"🚗 Suzuki",        "emoji":"🚗","price":30000,   "desc":"Entry-level baller."},
-    "tesla":        {"name":"🚘 Tesla",         "emoji":"🚘","price":60000,   "desc":"Electric flex."},
-    "lamborghini":  {"name":"🏎️ Lamborghini",   "emoji":"🏎️","price":150000,  "desc":"Vroom at the speed of rich."},
-    "formula":      {"name":"🏁 Formula 1",     "emoji":"🏁","price":300000,  "desc":"You don't race, you just own it."},
+    "starbucks":    {"name":"☕ Starbucks",     "emoji":"☕","price":1000,     "desc":"Overpriced coffee. Flex it."},
+    "rose":         {"name":"🌹 Rose",          "emoji":"🌹","price":2000,     "desc":"Romantic and expensive."},
+    "vodka":        {"name":"🍾 Vodka",         "emoji":"🍾","price":3000,     "desc":"Premium Russian water."},
+    "diamond_ring": {"name":"💍 Diamond Ring",  "emoji":"💍","price":5000,    "desc":"Shine on you crazy diamond."},
+    "ps5":          {"name":"🎮 PS5",           "emoji":"🎮","price":10000,    "desc":"Next-gen gaming. Pure flex."},
+    "computer":     {"name":"🖥️ Computer",      "emoji":"🖥️","price":14000,    "desc":"RGB everything."},
+    "macbook":      {"name":"💻 MacBook",       "emoji":"💻","price":18000,   "desc":"For the elite."},
+    "iphone":       {"name":"📱 iPhone",        "emoji":"📱","price":20000,   "desc":"Latest model. Obviously."},
+    "rolex":        {"name":"⌚ Rolex",          "emoji":"⌚","price":27000,   "desc":"Time is money, literally."},
+    "suzuki":       {"name":"🚗 Suzuki",        "emoji":"🚗","price":50000,   "desc":"Entry-level baller."},
+    "tesla":        {"name":"🚘 Tesla",         "emoji":"🚘","price":80000,   "desc":"Electric flex."},
+    "Bus":          {"name":"🚌 Bus",           "emoji":"🚌","price":100000,  "desc":"A vehicle which can helps to earn money."},
+    "formula":      {"name":"🏁 Formula 1",     "emoji":"🏎️","price":300000,  "desc":"You don't race, you just own it."},
     "helicopter":   {"name":"🚁 Helicopter",    "emoji":"🚁","price":500000,  "desc":"Above traffic, above problems."},
-    "ship":         {"name":"🚢 Ship",          "emoji":"🚢","price":1000000, "desc":"Sail the seas of wealth."},
+    "Train":        {"name":"🚆 Train",         "emoji":"🚆","price":800000,  "desc":"Fast public transport system."},
+    "Privet_jet":   {"name":"✈️ Privet Jet",    "emoji":"✈️","price":1200000, "desc":"Luxury personal air travel."},
+    "ship":         {"name":"🚢 Ship",          "emoji":"🚢","price":1500000, "desc":"Sail the seas of wealth."},
     "mansion":      {"name":"🏩 Mansion",       "emoji":"🏩","price":2000000, "desc":"50 rooms, all empty."},
     "ufo":          {"name":"🛸 UFO",           "emoji":"🛸","price":5000000, "desc":"Out of this world flex."},
     "island":       {"name":"🏝️ Island",        "emoji":"🏝️","price":10000000,"desc":"Your own country basically."},
