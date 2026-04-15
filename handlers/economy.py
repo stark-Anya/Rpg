@@ -38,15 +38,17 @@ async def bal(update: Update, context: ContextTypes.DEFAULT_TYPE):
     status = "🟢 Alive" if data["status"] == "alive" else "💀 Dead"
 
     await update.message.reply_text(
-        f"""👤 <b>{name}</b>  |  {status}
-◈ ━━━━━━ ⸙ ━━━━━━ ◈
+        f"""👤 <b>User: {name}</b>
+◈ ━━━━━━  ━━━━━━ ◈
 👛 <b>Wallet:</b> {fmt(data['balance'])}
 🏦 <b>Bank:</b> {fmt(data['bank_balance'])}
+❤️ <b>Status:</b> {status}
 ⚔️ <b>Kills:</b> {data['kills']}
-◈ ━━━━━━ ⸙ ━━━━━━ ◈
+
+<b>🎒 𝐀𝐜𝐭𝐢𝐯𝐞 𝐆𝐞𝐚𝐫:</b>
 🗡️ <b>Weapon:</b> {best_w}
 🛡️ <b>Shield:</b> {prot_str}
-◈ ━━━━━━ ⸙ ━━━━━━ ◈
+
 💎 <b>Flex:</b> {flex_str}""",
         parse_mode="HTML"
     )
