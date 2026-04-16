@@ -120,7 +120,7 @@ async def gift_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
     if tid == user.id:
-        await update.message.reply_text("🎁 Can't gift yourself!")
+        await update.message.reply_text("🎁 Can't gift yourself Beby!")
         return
 
     udata = await get_user(user.id, group_id, user.first_name)
@@ -139,9 +139,9 @@ async def gift_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = f"""🎁 <b>𝐆𝐢𝐟𝐭 𝐒𝐭𝐨𝐫𝐞</b>
 ━━━━━━━━━━━━━━━
-👤 Your Name : <b>{tname}</b>
-👛 Your wallet: <b>{fmt(udata['balance'])}</b>
-📦 Gift charge: +{fmt(GIFT_SURCHARGE)} per item
+👤<b> Your Name :</b> <b>{tname}</b>
+👛 <b>Your wallet:</b> <b>{fmt(udata['balance'])}</b>
+📦 <b>Gift charge:</b> +{fmt(GIFT_SURCHARGE)} per item
 ━━━━━━━━━━━━━━━
 <b>𝑃𝑖𝑐𝑘 𝑎 𝐹𝑙𝑒𝑥 𝑎𝑛𝑑 𝑉𝑖𝑝 𝑖𝑡𝑒𝑚 𝑡𝑜 𝑠𝑒𝑛𝑑</b> 👇"""
 
@@ -204,9 +204,9 @@ async def gift_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
 
         text = f"""🎁 <b> 𝐆𝐢𝐟𝐭 𝐒𝐡𝐨𝐩</b>
 ━━━━━━━━━━━━━━━
-👤 Gifting to: <b>{gd['target_name']}</b>
-👛 Your wallet: <b>{fmt(balance)}</b>
-📦 Gift surcharge: +{fmt(GIFT_SURCHARGE)} per item
+👤<b> Gifting to:</b> <b>{gd['target_name']}</b>
+👛 <b>Your wallet:</b> <b>{fmt(balance)}</b>
+📦 <b>Gift surcharge:</b> +{fmt(GIFT_SURCHARGE)} per item
 ━━━━━━━━━━━━━━━
 <b>𝑃𝑖𝑐𝑘 𝑎 𝐹𝑙𝑒𝑥 𝑎𝑛𝑑 𝑉𝑖𝑝 𝑖𝑡𝑒𝑚 𝑡𝑜 𝑠𝑒𝑛𝑑</b> 👇"""
         await edit(text, gift_list_keyboard(balance, page))
@@ -218,9 +218,9 @@ async def gift_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
         page = gd.get("page", 0)
         text = f"""🎁 <b>𝐆𝐢𝐟𝐭 𝐒𝐡𝐨𝐩</b>
 ━━━━━━━━━━━━━━━
-👤 Gifting to: <b>{gd['target_name']}</b>
-👛 Your wallet: <b>{fmt(balance)}</b>
-📦 Gift surcharge: +{fmt(GIFT_SURCHARGE)} per item
+👤 <b>Gifting to:</b> <b>{gd['target_name']}</b>
+👛<b> Your wallet:</b> <b>{fmt(balance)}</b>
+📦 <b>Gift surcharge:</b> +{fmt(GIFT_SURCHARGE)} per item
 ━━━━━━━━━━━━━━━
 <b>𝑃𝑖𝑐𝑘 𝑎 𝐹𝑙𝑒𝑥 𝑎𝑛𝑑 𝑉𝑖𝑝 𝑖𝑡𝑒𝑚 𝑡𝑜 𝑠𝑒𝑛𝑑</b> 👇"""
         await edit(text, gift_list_keyboard(balance, page))
@@ -236,16 +236,16 @@ async def gift_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
         gift_price = item["price"] + GIFT_SURCHARGE
         can_afford = balance >= gift_price
 
-        text = f"""{item['emoji']} <b>{item['name']}</b>
+        text = f"""<b>{item['name']}</b>
 ━━━━━━━━━━━━━━━
-📖 {item['desc']}
+📖<b> {item['desc']}</b>
 ━━━━━━━━━━━━━━━
-💰 Item price: {fmt(item['price'])}
-📦 Gift charge: +{fmt(GIFT_SURCHARGE)}
-💸 Total: <b>{fmt(gift_price)}</b>
-⏱️ Duration: ♾️ Permanent
+💰 <b>Item Price:</b> {fmt(item['price'])}
+📦 <b>Gift charge:</b> +{fmt(GIFT_SURCHARGE)}
+💸 <b>Total:</b> <b>{fmt(gift_price)}</b>
+⏱️ <b>Duration:</b> ♾️ Permanent
 ━━━━━━━━━━━━━━━
-👛 Your wallet: {fmt(balance)}"""
+👛<b> Your wallet:</b> {fmt(balance)}"""
 
         await edit(text, gift_item_keyboard(ikey, can_afford))
         return
@@ -266,10 +266,10 @@ async def gift_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
         gd["item_key"] = ikey
         context.user_data["gift"] = gd
 
-        text = f"""{item['emoji']} <b>{item['name']}</b> selected!
+        text = f"""<b>{item['name']}</b> selected!
 ━━━━━━━━━━━━━━━
-👤 Gifting to: <b>{gd['target_name']}</b>
-💸 Total cost: <b>{fmt(gift_price)}</b>
+👤 <b>Gifting to:</b> <b>{gd['target_name']}</b>
+💸 <b>Total cost:</b> <b>{fmt(gift_price)}</b>
 ━━━━━━━━━━━━━━━
 💬 <b>Write a personal message</b> for {gd['target_name']}
 Or tap Skip below 👇"""
@@ -298,15 +298,15 @@ Or tap Skip below 👇"""
         gift_price = item["price"] + GIFT_SURCHARGE
         can_afford = balance >= gift_price
 
-        text = f"""{item['emoji']} <b>{item['name']}</b>
+        text = f"""<b>{item['name']}</b>
 ━━━━━━━━━━━━━━━
-📖 {item['desc']}
+📖 <b>{item['desc']}</b>
 ━━━━━━━━━━━━━━━
-💰 Item price: {fmt(item['price'])}
-📦 Gift charge: +{fmt(GIFT_SURCHARGE)}
-💸 Total: <b>{fmt(gift_price)}</b>
+💰 <b>Item price:</b> {fmt(item['price'])}
+📦 <b>Gift charge:</b> +{fmt(GIFT_SURCHARGE)}
+💸 <b>Total:</b> <b>{fmt(gift_price)}</b>
 ━━━━━━━━━━━━━━━
-👛 Your wallet: {fmt(balance)}"""
+👛 <b>Your wallet:</b> {fmt(balance)}"""
 
         await edit(text, gift_item_keyboard(ikey, can_afford))
         return
@@ -343,9 +343,9 @@ async def gift_message_handler(update: Update, context: ContextTypes.DEFAULT_TYP
 
     confirm_text = f"""🎁 <b>𝐂𝐨𝐧𝐟𝐨𝐫𝐦 𝐆𝐢𝐟𝐭</b>
 ━━━━━━━━━━━━━━━
-👤 To: <b>{gd['target_name']}</b>
-{item['emoji']} <b>{item['name']}</b>
-💰 Total: <b>{fmt(gift_price)}</b>
+👤 <b>To:</b> <b>{gd['target_name']}</b>
+🎁 <b>Gift:</b> <b>{item['name']}</b>
+💰 <b>Total:</b> <b>{fmt(gift_price)}</b>
 {msg_line}
 ━━━━━━━━━━━━━━━
 <b>ᴀʀᴇ ʏᴏᴜ ʀᴇᴀᴅʏ ᴛᴏ sᴇɴᴅ ɢɪꜰᴛ ?</b>"""
@@ -365,9 +365,9 @@ async def _show_confirm(edit_fn, gd: dict, balance: int):
 
     text = f"""🎁 <b>𝐂𝐨𝐧𝐟𝐨𝐫𝐦 𝐆𝐢𝐟𝐭</b>
 ━━━━━━━━━━━━━━━
-👤 To: <b>{gd['target_name']}</b>
-{item['emoji']} <b>{item['name']}</b>
-💰 Total: <b>{fmt(gift_price)}</b>
+👤 <b>To:</b> <b>{gd['target_name']}</b>
+🎁 <b>Gift:</b> <b>{item['name']}</b>
+💰 <b>Total:</b> <b>{fmt(gift_price)}</b>
 {msg_line}
 ━━━━━━━━━━━━━━━
 <b>ᴀʀᴇ ʏᴏᴜ ʀᴇᴀᴅʏ ᴛᴏ sᴇɴᴅ ɢɪꜰᴛ ?</b>"""
@@ -411,19 +411,19 @@ async def _execute_gift(query, context, gd: dict):
 
     context.user_data.pop("gift", None)
 
-    msg_line = f'\n💬 <i>"{msg}"</i>' if msg else ""
+    msg_line = f'\n💬 𝐘𝐨𝐮𝐫 𝐌𝐞𝐬𝐬𝐚𝐠𝐞: <i>"{msg}"</i>' if msg else ""
 
     # ── Group message ──────────────────────────────────────────
     group_text = f"""🎁 <b>𝐆𝐢𝐟𝐭 𝐒𝐞𝐧𝐭 !</b>
 ━━━━━━━━━━━━━━━
-💌 From: <b>{sender_name}</b>
-🎯 To: <b>{target_name}</b>
-{item['emoji']} <b>{item['name']}</b>
+💌 <b>From:</b> <b>{sender_name}</b>
+💟 <b>To:</b> <b>{target_name}</b>
+🎁 <b>Gift:</b> <b>{item['name']}</b>
 ━━━━━━━━━━━━━━━
-💰 Item: {fmt(item['price'])}
-📦 Charge: +{fmt(GIFT_SURCHARGE)}
-💸 Total paid: {fmt(gift_price)}
-🌟 {msg_line}"""
+💰 <b>Item:</b> {fmt(item['price'])}
+📦 <b>Charge:</b> +{fmt(GIFT_SURCHARGE)}
+💸 <b>Total paid:</b> {fmt(gift_price)}
+{msg_line}"""
 
     try:
         await query.delete_message()
@@ -435,12 +435,12 @@ async def _execute_gift(query, context, gd: dict):
     # ── Private DM to receiver ──────────────────────────────────
     dm_text = f"""🎁 <b>𝕐𝕠𝕦 𝔾𝕠𝕥 𝔸 𝔾𝕚𝕗𝕥 !</b>
 ━━━━━━━━━━━━━━━
-💌 From: <b>{sender_name}</b>
-{item['emoji']} <b>{item['name']}</b>
-💰 Value: {fmt(item['price'])}
-🌟 {msg_line}
+💌 <b>From:</b> <b>{sender_name}</b>
+🎁 <b>Gift:</b> <b>{item['name']}</b>
+💰 <b>Value:</b> {fmt(item['price'])}
+{msg_line}
 ━━━━━━━━━━━━━━━
-✅ 𝐴𝑑𝑑 𝑡𝑜 𝑌𝑜𝑢 𝐼𝑛𝑣𝑒𝑛𝑡𝑜𝑟𝑦 !"""
+✅ <b>𝐴𝑑𝑑 𝑡𝑜 𝑌𝑜𝑢 𝐼𝑛𝑣𝑒𝑛𝑡𝑜𝑟𝑦 !</b>"""
 
     try:
         if IMG_GIFT:
