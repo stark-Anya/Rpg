@@ -502,19 +502,18 @@ async def sell_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
         return
 
     # ── Item detail ─────────────────────────────────────────────
-    if data.startswith("sell_item_") or data.startswith("sell_now_"):
-        await query.answer()
-        prefix = "sell_item_" if data.startswith("sell_item_") else "sell_now_"
-        ikey   = data[len(prefix):]
-        item   = FLEX_ITEMS.get(ikey)
-        if not item:
-            return
+    if data.startswith("sell_item_"):
+    await query.answer()
+    ikey = data[len("sell_item_"):]
+    item = FLEX_ITEMS.get(ikey)
+    if not item:
+        return
 
-        owned_qty  = inventory.get(ikey, {}).get("qty", 0)
-        sell_price = int(item["price"] * SELL_RETURN_PERCENT)
-        tax_amt    = item["price"] - sell_price  # 15% tax cut
+    owned_qty  = inventory.get(ikey, {}).get("qty", 0)
+    sell_price = int(item["price"] * SELL_RETURN_PERCENT)
+    tax_amt    = item["price"] - sell_price
 
-        text = f"""{item['emoji']} <b>{item['name']}</b>
+    text = f"""{item['emoji']} <b>{item['name']}</b>
 ━━━━━━━━━━━━━━━
 💰 Original price: <b>{fmt(item['price'])}</b>
 💸 Selling price: <b>{fmt(sell_price)}</b>
@@ -523,26 +522,28 @@ async def sell_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
 ━━━━━━━━━━━━━━━
 👛 After sell: {fmt(udata['balance'] + sell_price)}"""
 
-        await edit(text, sell_item_keyboard(ikey))
+    await edit(text, sell_item_keyboard(ikey))
+    return
+
+    
+    # ── Confirm screen ──────────────────────────────────────────
+    if data.startswith("sell_now_"):
+    await query.answer()
+    ikey = data[len("sell_now_"):]
+
+    item = FLEX_ITEMS.get(ikey)
+    if not item:
         return
 
-    # ── Confirm screen ──────────────────────────────────────────
-    if data.startswith("sell_confirm_"):
-        ikey = data[len("sell_confirm_"):]
-        item = FLEX_ITEMS.get(ikey)
-        if not item:
-            await query.answer("❌ Item not found!", show_alert=True)
-            return
+    owned = inventory.get(ikey, {})
+    if not owned or owned.get("qty", 0) <= 0:
+        await query.answer("❌ You no longer own this item!", show_alert=True)
+        return
 
-        owned = inventory.get(ikey, {})
-        if not owned or owned.get("qty", 0) <= 0:
-            await query.answer("❌ You no longer own this item!", show_alert=True)
-            return
+    sell_price = int(item["price"] * SELL_RETURN_PERCENT)
+    tax_amt    = item["price"] - sell_price
 
-        sell_price = int(item["price"] * SELL_RETURN_PERCENT)
-        tax_amt    = item["price"] - sell_price
-
-        text = f"""{item['emoji']} <b>𝐂𝐨𝐧𝐟𝐨𝐫𝐦 𝐒𝐞𝐥𝐥</b>
+    text = f"""{item['emoji']} <b>𝐂𝐨𝐧𝐟𝐢𝐫𝐦 𝐒𝐞𝐥𝐥</b>
 ━━━━━━━━━━━━━━━
 🛍️ Item: <b>{item['name']}</b>
 💰 Original: {fmt(item['price'])}
@@ -551,8 +552,8 @@ async def sell_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
 ━━━━━━━━━━━━━━━
 𝔸𝕣𝕖 𝕪𝕠𝕦 𝕤𝕦𝕣𝕖 ?"""
 
-        await edit(text, sell_confirm_keyboard(ikey))
-        return
+    await edit(text, sell_confirm_keyboard(ikey))
+    return
 
     # ── Execute sell ────────────────────────────────────────────
     if data.startswith("sell_do_"):
