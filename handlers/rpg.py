@@ -48,20 +48,20 @@ async def kill(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # ── Owner protection ────────────────────────────────────────
     if tid == OWNER_ID:
-        await update.message.reply_text("👑 I can't kill my owner.")
+        await update.message.reply_text("👑 𝚈𝚘𝚞 𝚌𝚊𝚗'𝚝 𝙺𝚒𝚕𝚕 𝙼𝚢 𝙾𝚠𝚗𝚎𝚛.")
         return
 
     kdata = await get_user(killer.id, gid, killer.first_name)
     if kdata["status"] == "dead":
-        await update.message.reply_text("💀 You're dead! Use /revive.")
+        await update.message.reply_text("💀 𝚈𝚘𝚞 𝚊𝚛𝚎 𝚍𝚎𝚊𝚍. 𝚞𝚜𝚎 /revive.")
         return
 
     vdata = await get_user(tid, gid, tname)
     if vdata["status"] == "dead":
-        await update.message.reply_text(f"💀 <b>{tname}</b> is already dead!", parse_mode="HTML")
+        await update.message.reply_text(f"💀 <b>{tname}</b> 𝚒𝚜 𝚊𝚕𝚛𝚎𝚊𝚍𝚢 𝚍𝚎𝚊𝚍!", parse_mode="HTML")
         return
     if is_protected(vdata):
-        await update.message.reply_text(f"🛡️ <b>{tname}</b> is protected!", parse_mode="HTML")
+        await update.message.reply_text(f"🛡️ <b>{tname}</b> 𝚒𝚜 𝚙𝚛𝚘𝚝𝚎𝚌𝚝𝚎𝚍!", parse_mode="HTML")
         return
 
     kinv = await expire_weapons(killer.id, gid, kdata, context)
@@ -169,7 +169,7 @@ async def rob(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # ── Owner protection ────────────────────────────────────────
     if tid == OWNER_ID:
-        await update.message.reply_text("👑 I can't rob my owner.")
+        await update.message.reply_text("👑 𝚈𝚘𝚞 𝙲𝚊𝚗'𝚝 𝚁𝚘𝚋 𝙼𝚢 𝙾𝚠𝚗𝚎𝚛.")
         return
 
     udata = await get_user(u.id, gid, u.first_name)
