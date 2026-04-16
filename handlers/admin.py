@@ -16,76 +16,76 @@ from config import (
 
 ECONOMY_TEXT = f"""<blockquote expandable>💰 <b>𝐄ᴄᴏɴᴏᴍʏ 𝐂ᴏᴍᴍᴀɴᴅs ❖</b></blockquote>
 <b>━━━━━━━━━━━━━━━━</b>
-<code>/bal</code> ➻ <b>𝐂ʜᴇᴄᴋ ᴡᴀʟʟᴇᴛ, ʙᴀɴᴋ & sᴛᴀᴛs</b>  
-<code>/daily</code> ➻ <b>𝐂ʟᴀɪᴍ {DAILY_REWARD} ᴄᴏɪɴs ᴇᴠᴇʀʏ 24ʜ</b>  
-<code>/claim</code> ➻ <b>𝐑ᴀɴᴅᴏᴍ 100–500 ɢʀᴏᴜᴘ ʙᴏɴᴜs (ᴅᴀɪʟʏ)</b>  
-<code>/mine</code> ➻ <b>𝐄ᴀʀɴ {MINE_MIN}–{MINE_MAX} ᴄᴏɪɴs (1ʜ ᴄᴏᴏʟᴅᴏᴡɴ)</b>  
-<code>/farm</code> ➻ <b>𝐄ᴀʀɴ {FARM_MIN}–{FARM_MAX} ᴄᴏɪɴs (1ʜ ᴄᴏᴏʟᴅᴏᴡɴ)</b>  
-<code>/crime</code> ➻ <b>60% ᴄʜᴀɴᴄᴇ {CRIME_MIN_REWARD}–{CRIME_MAX_REWARD} ᴄᴏɪɴs (1ʜ ᴄᴏᴏʟᴅᴏᴡɴ)</b>  
-<code>/give [amount]</code> ➻ <b>𝐒ᴇɴᴅ ᴄᴏɪɴs ({int(GIVE_TAX*100)}% ᴛᴀx)</b>  
-<code>/toprich</code> ➻ <b>𝐓ᴏᴘ 10 ʀɪᴄʜᴇsᴛ ᴘʟᴀʏᴇʀs</b>"""
+/bal ➻ <b>𝐂ʜᴇᴄᴋ ᴡᴀʟʟᴇᴛ, ʙᴀɴᴋ & sᴛᴀᴛs</b>  
+/daily ➻ <b>𝐂ʟᴀɪᴍ {DAILY_REWARD} ᴄᴏɪɴs ᴇᴠᴇʀʏ 24ʜ</b>  
+/claim ➻ <b>𝐑ᴀɴᴅᴏᴍ 100–500 ɢʀᴏᴜᴘ ʙᴏɴᴜs (ᴅᴀɪʟʏ)</b>  
+/mine ➻ <b>𝐄ᴀʀɴ {MINE_MIN}–{MINE_MAX} ᴄᴏɪɴs (1ʜ ᴄᴏᴏʟᴅᴏᴡɴ)</b>  
+/farm ➻ <b>𝐄ᴀʀɴ {FARM_MIN}–{FARM_MAX} ᴄᴏɪɴs (1ʜ ᴄᴏᴏʟᴅᴏᴡɴ)</b>  
+/crime ➻ <b>60% ᴄʜᴀɴᴄᴇ {CRIME_MIN_REWARD}–{CRIME_MAX_REWARD} ᴄᴏɪɴs (1ʜ ᴄᴏᴏʟᴅᴏᴡɴ)</b>  
+/give [amount] ➻ <b>𝐒ᴇɴᴅ ᴄᴏɪɴs ({int(GIVE_TAX*100)}% ᴛᴀx)</b>  
+/toprich ➻ <b>𝐓ᴏᴘ 10 ʀɪᴄʜᴇsᴛ ᴘʟᴀʏᴇʀs</b>"""
 
 BANK_TEXT = f"""<blockquote expandable>🏦 <b>𝐁ᴀɴᴋ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/bank</code> ➻ <b>𝐕ɪᴇᴡ ʙᴀɴᴋ & ʟᴏᴀɴ ɪɴꜰᴏ</b>  
-<code>/deposit [amount]</code> ➻ <b>𝐃ᴇᴘᴏsɪᴛ ᴄᴏɪɴs (+{int(BANK_INTEREST_RATE*100)}%/ᴅᴀʏ ɪɴᴛᴇʀᴇsᴛ)</b>  
-<code>/withdraw [amount]</code> ➻ <b>𝐖ɪᴛʜᴅʀᴀᴡ ꜰʀᴏᴍ ʙᴀɴᴋ</b>  
-<code>/loan [amount]</code> ➻ <b>𝐁ᴏʀʀᴏᴡ ᴜᴘ ᴛᴏ {LOAN_MAX} ᴄᴏɪɴs ({int(LOAN_INTEREST_RATE*100)}%/ᴅᴀʏ ɪɴᴛᴇʀᴇsᴛ)</b>  
-<code>/repay [amount]</code> ➻ <b>𝐑ᴇᴘᴀʏ ᴀᴄᴛɪᴠᴇ ʟᴏᴀɴ</b>
+/bank ➻ <b>𝐕ɪᴇᴡ ʙᴀɴᴋ & ʟᴏᴀɴ ɪɴꜰᴏ</b>  
+/deposit [amount] ➻ <b>𝐃ᴇᴘᴏsɪᴛ ᴄᴏɪɴs (+{int(BANK_INTEREST_RATE*100)}%/ᴅᴀʏ ɪɴᴛᴇʀᴇsᴛ)</b>  
+/withdraw [amount] ➻ <b>𝐖ɪᴛʜᴅʀᴀᴡ ꜰʀᴏᴍ ʙᴀɴᴋ</b>  
+/loan [amount] ➻ <b>𝐁ᴏʀʀᴏᴡ ᴜᴘ ᴛᴏ {LOAN_MAX} ᴄᴏɪɴs ({int(LOAN_INTEREST_RATE*100)}%/ᴅᴀʏ ɪɴᴛᴇʀᴇsᴛ)</b>  
+/repay [amount] ➻ <b>𝐑ᴇᴘᴀʏ ᴀᴄᴛɪᴠᴇ ʟᴏᴀɴ</b>
 <blockquote>💡 <b>𝐊ᴇᴇᴘ ᴄᴏɪɴs ɪɴ ʙᴀɴᴋ ᴛᴏ ᴇᴀʀɴ ɪɴᴛᴇʀᴇsᴛ ᴅᴀɪʟʏ!</b>  
 ⚠️ <b>𝐋ᴏᴀɴs ɢʀᴏᴡ {int(LOAN_INTEREST_RATE*100)}% ᴘᴇʀ ᴅᴀʏ — ʀᴇᴘᴀʏ ꜰᴀsᴛ!</b></blockquote>"""
 
 RPG_TEXT = f"""<blockquote expandable>⚔️ <b>𝐑𝐏𝐆 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/kill @user</code> ➻ <b>𝐊ɪʟʟ & ʟᴏᴏᴛ 90% ᴡᴀʟʟᴇᴛ + 10% ʙᴀɴᴋ</b>  
-<code>/rob [amount] @user</code> ➻ <b>𝐒ᴛᴇᴀʟ ᴇxᴀᴄᴛ ᴀᴍᴏᴜɴᴛ</b>  
-<code>/protect 1d/2d/3d</code> ➻ <b>𝐒ʜɪᴇʟᴅ ꜰʀᴏᴍ ᴀᴛᴛᴀᴄᴋs ({PROTECT_COST_1D}/{PROTECT_COST_2D}/{PROTECT_COST_3D} ᴄᴏɪɴs)</b>  
-<code>/revive</code> ➻ <b>𝐂ᴏᴍᴇ ʙᴀᴄᴋ ᴛᴏ ʟɪꜰᴇ (ꜰʀᴇᴇ)</b>  
-<code>/heal</code> ➻ <b>𝐑ᴇsᴛᴏʀᴇ 50 𝐇𝐏 ꜰᴏʀ 100 ᴄᴏɪɴs</b>  
-<code>/hp</code> ➻ <b>𝐂ʜᴇᴄᴋ 𝐇𝐏 sᴛᴀᴛᴜs</b>  
-<code>/profile</code> ➻ <b>𝐅ᴜʟʟ 𝐑𝐏𝐆 ᴘʀᴏꜰɪʟᴇ</b>  
-<code>/topkill</code> ➻ <b>𝐓ᴏᴘ 10 ᴋɪʟʟᴇʀs</b>  
-<code>/ranking</code> ➻ <b>𝐅ᴜʟʟ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ</b>  
-<code>/wanted</code> ➻ <b>𝐓ᴏᴅᴀʏ'𝐬 ᴍᴏsᴛ ᴅᴀɴɢᴇʀᴏᴜs ᴘʟᴀʏᴇʀs</b>"""
+/kill @user ➻ <b>𝐊ɪʟʟ & ʟᴏᴏᴛ 90% ᴡᴀʟʟᴇᴛ + 10% ʙᴀɴᴋ</b>  
+/rob [amount] @user ➻ <b>𝐒ᴛᴇᴀʟ ᴇxᴀᴄᴛ ᴀᴍᴏᴜɴᴛ</b>  
+/protect 1d/2d/3d ➻ <b>𝐒ʜɪᴇʟᴅ ꜰʀᴏᴍ ᴀᴛᴛᴀᴄᴋs ({PROTECT_COST_1D}/{PROTECT_COST_2D}/{PROTECT_COST_3D} ᴄᴏɪɴs)</b>  
+/revive ➻ <b>𝐂ᴏᴍᴇ ʙᴀᴄᴋ ᴛᴏ ʟɪꜰᴇ (ꜰʀᴇᴇ)</b>  
+/heal ➻ <b>𝐑ᴇsᴛᴏʀᴇ 50 𝐇𝐏 ꜰᴏʀ 100 ᴄᴏɪɴs</b>  
+/hp ➻ <b>𝐂ʜᴇᴄᴋ 𝐇𝐏 sᴛᴀᴛᴜs</b>  
+/profile ➻ <b>𝐅ᴜʟʟ 𝐑𝐏𝐆 ᴘʀᴏꜰɪʟᴇ</b>  
+/topkill ➻ <b>𝐓ᴏᴘ 10 ᴋɪʟʟᴇʀs</b>  
+/ranking ➻ <b>𝐅ᴜʟʟ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ</b>  
+/wanted ➻ <b>𝐓ᴏᴅᴀʏ'𝐬 ᴍᴏsᴛ ᴅᴀɴɢᴇʀᴏᴜs ᴘʟᴀʏᴇʀs</b>"""
 
 SHOP_TEXT = f"""<blockquote expandable>🏪 <b>𝐒ʜᴏᴘ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/shop</code> ➻ <b>𝐁ʀᴏᴡsᴇ ᴡᴇᴀᴘᴏɴs & ꜰʟᴇx ɪᴛᴇᴍs</b>  
-<code>/sell [item]</code> ➻ <b>𝐒ᴇʟʟ ꜰʟᴇx ɪᴛᴇᴍs ({int(SELL_RETURN_PERCENT*100)}% ʀᴇᴛᴜʀɴ)</b>  
-<code>/items</code> ➻ <b>𝐕ɪᴇᴡ ʏᴏᴜʀ ɪɴᴠᴇɴᴛᴏʀʏ</b>
+/shop< ➻ <b>𝐁ʀᴏᴡsᴇ ᴡᴇᴀᴘᴏɴs & ꜰʟᴇx ɪᴛᴇᴍs</b>  
+/sell [item] ➻ <b>𝐒ᴇʟʟ ꜰʟᴇx ɪᴛᴇᴍs ({int(SELL_RETURN_PERCENT*100)}% ʀᴇᴛᴜʀɴ)</b>  
+/items ➻ <b>𝐕ɪᴇᴡ ʏᴏᴜʀ ɪɴᴠᴇɴᴛᴏʀʏ</b>
 <blockquote>⚔️ <b>𝐖ᴇᴀᴘᴏɴs</b> ➻ <b>𝐋ᴀsᴛ 24ʜ, ʙᴏᴏsᴛ ᴋɪʟʟ ʟᴏᴏᴛ</b>  
 💎 <b>𝐅ʟᴇx & 𝐕𝐈𝐏</b> ➻ <b>𝐏ᴇʀᴍᴀɴᴇɴᴛ ᴄᴏʟʟᴇᴄᴛɪʙʟᴇs</b></blockquote>"""
 
 WAR_TEXT = """<blockquote expandable>🥊 <b>𝐖ᴀʀ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/war @user [amount]</code> ➻ <b>𝐂ʜᴀʟʟᴇɴɢᴇ ᴛᴏ ᴀ sᴛᴀᴋᴇᴅ ᴡᴀʀ</b>  
-<code>/warlog</code> ➻ <b>𝐘ᴏᴜʀ ᴡᴀʀ ʜɪsᴛᴏʀʏ & sᴛᴀᴛs</b>
+/war @user [amount] ➻ <b>𝐂ʜᴀʟʟᴇɴɢᴇ ᴛᴏ ᴀ sᴛᴀᴋᴇᴅ ᴡᴀʀ</b>  
+/warlog ➻ <b>𝐘ᴏᴜʀ ᴡᴀʀ ʜɪsᴛᴏʀʏ & sᴛᴀᴛs</b>
 <blockquote>⚔️ <b>𝐇ɪɢʜᴇʀ ᴡᴇᴀᴘᴏɴ ᴘʀɪᴄᴇ = ʙᴇᴛᴛᴇʀ ᴄʜᴀɴᴄᴇ ᴏꜰ ᴡɪɴɴɪɴɢ</b>  
 🪙 <b>𝐃ʀᴀᴡ = ᴄᴏɪɴ ꜰʟɪᴘ ᴅᴇᴄɪᴅᴇs ᴡɪɴɴᴇʀ</b>  
 🏆 <b>𝐖ɪɴɴᴇʀ ᴛᴀᴋᴇs 90% ᴏꜰ ᴘᴏᴛ</b></blockquote>"""
 
 SOCIAL_TEXT = """<blockquote expandable>💍 <b>𝐒ᴏᴄɪᴀʟ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/propose @user</code> ➻ <b>𝐒ᴇɴᴅ ᴀ ᴍᴀʀʀɪᴀɢᴇ ᴘʀᴏᴘᴏsᴀʟ (5% ᴛᴀx)</b>  
-<code>/marry</code> ➻ <b>𝐂ʜᴇᴄᴋ ᴍᴀʀʀɪᴀɢᴇ sᴛᴀᴛᴜs</b>  
-<code>/divorce</code> ➻ <b>𝐄ɴᴅ ᴍᴀʀʀɪᴀɢᴇ (ᴄᴏsᴛs 2000 ᴄᴏɪɴs)</b>  
-<code>/couple</code> ➻ <b>𝐑ᴀɴᴅᴏᴍ ɢʀᴏᴜᴘ ᴍᴀᴛᴄʜᴍᴀᴋɪɴɢ</b>  
-<code>/crush @user</code> ➻ <b>𝐒ᴇɴᴅ ᴀ ꜰᴜɴ ᴄʀᴜsʜ ᴍᴇssᴀɢᴇ</b>  
-<code>/love @user</code> ➻ <b>𝐒ᴇɴᴅ ᴀ ʟᴏᴠᴇ ᴍᴇssᴀɢᴇ</b>"""
+/propose @user ➻ <b>𝐒ᴇɴᴅ ᴀ ᴍᴀʀʀɪᴀɢᴇ ᴘʀᴏᴘᴏsᴀʟ (5% ᴛᴀx)</b>  
+/marry ➻ <b>𝐂ʜᴇᴄᴋ ᴍᴀʀʀɪᴀɢᴇ sᴛᴀᴛᴜs</b>  
+/divorce ➻ <b>𝐄ɴᴅ ᴍᴀʀʀɪᴀɢᴇ (ᴄᴏsᴛs 2000 ᴄᴏɪɴs)</b>  
+/couple ➻ <b>𝐑ᴀɴᴅᴏᴍ ɢʀᴏᴜᴘ ᴍᴀᴛᴄʜᴍᴀᴋɪɴɢ</b>  
+/crush @user ➻ <b>𝐒ᴇɴᴅ ᴀ ꜰᴜɴ ᴄʀᴜsʜ ᴍᴇssᴀɢᴇ</b>  
+/love @user ➻ <b>𝐒ᴇɴᴅ ᴀ ʟᴏᴠᴇ ᴍᴇssᴀɢᴇ</b>"""
 
 GROUP_TEXT = """<blockquote expandable>⛩️ <b>𝐆ʀᴏᴜᴘ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/ping</code> ➻ <b>𝐁ᴏᴛ sᴛᴀᴛᴜs & ʟᴀᴛᴇɴᴄʏ</b>  
-<code>/open</code> ➻ <b>𝐄ɴᴀʙʟᴇ ᴇᴄᴏɴᴏᴍʏ <i>(ᴀᴅᴍɪɴs)</i></b>  
-<code>/close</code> ➻ <b>𝐃ɪsᴀʙʟᴇ ᴇᴄᴏɴᴏᴍʏ <i>(ᴀᴅᴍɪɴs)</i></b>  
-<code>/toprich</code> ➻ <b>𝐓ᴏᴘ 10 ʀɪᴄʜᴇsᴛ</b>  
-<code>/topkill</code> ➻ <b>𝐓ᴏᴘ 10 ᴋɪʟʟᴇʀs</b>  
-<code>/ranking</code> ➻ <b>𝐅ᴜʟʟ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ</b>"""
+/ping ➻ <b>𝐁ᴏᴛ sᴛᴀᴛᴜs & ʟᴀᴛᴇɴᴄʏ</b>  
+/open ➻ <b>𝐄ɴᴀʙʟᴇ ᴇᴄᴏɴᴏᴍʏ <i>(ᴀᴅᴍɪɴs)</i></b>  
+/close ➻ <b>𝐃ɪsᴀʙʟᴇ ᴇᴄᴏɴᴏᴍʏ <i>(ᴀᴅᴍɪɴs)</i></b>  
+/toprich ➻ <b>𝐓ᴏᴘ 10 ʀɪᴄʜᴇsᴛ</b>  
+/topkill ➻ <b>𝐓ᴏᴘ 10 ᴋɪʟʟᴇʀs</b>  
+/ranking ➻ <b>𝐅ᴜʟʟ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ</b>"""
 
 OWNER_TEXT = """<blockquote expandable>👑 <b>𝐎ᴡɴᴇʀ 𝐂ᴏᴍᴍᴀɴᴅs</b></blockquote>
 ━━━━━━━━━━━━━━━
-<code>/transfer @user [amount]</code> ➻ <b>𝐀ᴅᴅ ᴄᴏɪɴs ᴛᴏ ᴀɴʏ ᴜsᴇʀ (ɴᴏ ᴛᴀx)</b>  
-<code>/open</code> / <code>/close</code> ➻ <b>𝐂ᴏɴᴛʀᴏʟ ᴇᴄᴏɴᴏᴍʏ ɪɴ ᴀɴʏ ɢʀᴏᴜᴘ</b>
+/transfer @user [amount] ➻ <b>𝐀ᴅᴅ ᴄᴏɪɴs ᴛᴏ ᴀɴʏ ᴜsᴇʀ (ɴᴏ ᴛᴀx)</b>  
+/open ᴀɴᴅ /close ➻ <b>𝐂ᴏɴᴛʀᴏʟ ᴇᴄᴏɴᴏᴍʏ ɪɴ ᴀɴʏ ɢʀᴏᴜᴘ</b>
 
 <i><b>𝐑ᴇsᴛʀɪᴄᴛᴇᴅ ᴛᴏ ʙᴏᴛ ᴏᴡɴᴇʀ ᴏɴʟʏ.</b></i>"""
 
