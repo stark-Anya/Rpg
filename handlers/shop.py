@@ -121,7 +121,7 @@ async def shop(update: Update, context: ContextTypes.DEFAULT_TYPE):
 👤 Customer: <b>{user.first_name}</b>
 👛 Wallet: <b>{fmt(udata['balance'])}</b>
 ━━━━━━━━━━━━━━━
-<u>Select a category to browse our goods!</u>"""
+<i>Select a category to browse our goods!</i>"""
 
     await send_with_image(update, group_id, IMG_SHOP, text, reply_markup=main_keyboard())
 
