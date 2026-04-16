@@ -347,48 +347,262 @@ Pure status symbols.
 
 # ── /sell command ─────────────────────────────────────────────────────────────
 
+SELL_PER_PAGE = 6   # 2 cols × 3 rows
+
+
+def sell_inventory_keyboard(owned_keys: list, page: int):
+    """2 cols × 3 rows of owned flex items. Item's own emoji, sell price shown."""
+    start = page * SELL_PER_PAGE
+    chunk = owned_keys[start:start + SELL_PER_PAGE]
+    rows  = []
+
+    for i in range(0, len(chunk), 2):
+        row = []
+        for k in chunk[i:i+2]:
+            item       = FLEX_ITEMS[k]
+            sell_price = int(item["price"] * SELL_RETURN_PERCENT)
+            label      = f"{item['emoji']} {item['name'].split(' ',1)[1]} · {fmt(sell_price)}"
+            row.append(InlineKeyboardButton(label, callback_data=f"sell_item_{k}"))
+        rows.append(row)
+
+    nav = []
+    if page > 0:
+        nav.append(InlineKeyboardButton("◀️ Prev", callback_data=f"sell_page_{page-1}"))
+    if start + SELL_PER_PAGE < len(owned_keys):
+        nav.append(InlineKeyboardButton("Next ▶️", callback_data=f"sell_page_{page+1}"))
+    if nav:
+        rows.append(nav)
+
+    rows.append([InlineKeyboardButton("🚫 Close", callback_data="sell_close")])
+    return InlineKeyboardMarkup(rows)
+
+
+def sell_item_keyboard(ikey: str):
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("💸 Sell Now", callback_data=f"sell_now_{ikey}")],
+        [InlineKeyboardButton("🔙 Back",     callback_data="sell_back_list")]
+    ])
+
+
+def sell_confirm_keyboard(ikey: str):
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("✅ Confirm", callback_data=f"sell_do_{ikey}"),
+            InlineKeyboardButton("🔙 Back",   callback_data=f"sell_now_{ikey}")
+        ]
+    ])
+
+
 async def sell(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Entry point — show user's owned flex items."""
     user     = update.effective_user
     group_id = update.effective_chat.id
+    udata    = await get_user(user.id, group_id, user.first_name)
+    inventory = udata.get("inventory", {})
 
-    if not context.args:
+    owned_keys = [k for k, v in inventory.items() if k in FLEX_ITEMS and v.get("qty", 0) > 0]
+
+    if not owned_keys:
         await update.message.reply_text(
-            "❌ Usage: <code>/sell [item_key]</code>\nEx: <code>/sell cookie</code>",
+            "🎒 You don't own any flex items to sell!\nVisit /shop to buy some.",
             parse_mode="HTML"
         )
         return
 
-    ikey = context.args[0].lower()
-    item = FLEX_ITEMS.get(ikey)
+    # Store session
+    context.user_data["sell"] = {
+        "user_id":    user.id,
+        "group_id":   group_id,
+        "owned_keys": owned_keys,
+        "page":       0,
+    }
 
-    if not item:
-        await update.message.reply_text("❌ ᴏɴʟʏ 𝐅𝐥𝐞𝐱 & 𝐕𝐈𝐏 ɪᴛᴇᴍ cᴀɴ ʙᴇ sᴏʟᴅ !", parse_mode="HTML")
+    text = f"""💸 <b>Sell Items</b>
+━━━━━━━━━━━━━━━
+👤 {user.first_name}
+👛 Balance: <b>{fmt(udata['balance'])}</b>
+🎒 Items owned: <b>{len(owned_keys)}</b>
+━━━━━━━━━━━━━━━
+Select an item to sell 👇"""
+
+    await update.message.reply_text(
+        text, parse_mode="HTML",
+        reply_markup=sell_inventory_keyboard(owned_keys, 0)
+    )
+
+
+async def sell_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query    = update.callback_query
+    user     = update.effective_user
+    group_id = update.effective_chat.id
+    data     = query.data
+    sd       = context.user_data.get("sell")
+
+    async def edit(text, kb):
+        try:
+            await query.edit_message_text(text=text, parse_mode="HTML", reply_markup=kb)
+        except Exception:
+            pass
+
+    # Session guard
+    if not sd:
+        await query.answer("⏰ Session expired. Use /sell again.", show_alert=True)
+        return
+    if user.id != sd["user_id"]:
+        await query.answer("🚫 This is not your sell session!", show_alert=True)
         return
 
     udata     = await get_user(user.id, group_id, user.first_name)
     inventory = udata.get("inventory", {})
-    owned     = inventory.get(ikey, {})
+    owned_keys = [k for k, v in inventory.items() if k in FLEX_ITEMS and v.get("qty", 0) > 0]
 
-    if not owned or owned.get("qty", 0) <= 0:
-        await update.message.reply_text("❌ ʏᴏᴜ ᴅᴏɴ'ᴛ ᴏᴡɴᴇᴅ ᴛʜɪs ɪᴛᴇᴍ !", parse_mode="HTML")
+    # ── Close ──────────────────────────────────────────────────
+    if data == "sell_close":
+        await query.answer()
+        context.user_data.pop("sell", None)
+        try:
+            await query.message.delete()
+        except Exception:
+            pass
         return
 
-    sell_price = int(item["price"] * SELL_RETURN_PERCENT)
-    new_qty    = owned["qty"] - 1
+    # ── Page nav ────────────────────────────────────────────────
+    if data.startswith("sell_page_"):
+        await query.answer()
+        page          = int(data.split("_")[-1])
+        sd["page"]    = page
+        sd["owned_keys"] = owned_keys
+        context.user_data["sell"] = sd
 
-    if new_qty <= 0:
-        del inventory[ikey]
-    else:
-        inventory[ikey]["qty"] = new_qty
-
-    new_balance = udata["balance"] + sell_price
-    await update_user(user.id, group_id, {"balance": new_balance, "inventory": inventory})
-
-    await update.message.reply_text(
-        f"""💸 <b>Sold!</b>
+        text = f"""💸 <b>Sell Items</b>
 ━━━━━━━━━━━━━━━
-🛍️ {item['name']}
-💰 <b>Got:</b> {fmt(sell_price)} (85% back)
-👛 <b>Balance:</b> {fmt(new_balance)}""",
-        parse_mode="HTML"
-    )
+👤 {user.first_name}
+👛 Balance: <b>{fmt(udata['balance'])}</b>
+🎒 Items owned: <b>{len(owned_keys)}</b>
+━━━━━━━━━━━━━━━
+Select an item to sell 👇"""
+        await edit(text, sell_inventory_keyboard(owned_keys, page))
+        return
+
+    # ── Back to list ────────────────────────────────────────────
+    if data == "sell_back_list":
+        await query.answer()
+        sd["owned_keys"] = owned_keys
+        page = sd.get("page", 0)
+        context.user_data["sell"] = sd
+
+        text = f"""💸 <b>Sell Items</b>
+━━━━━━━━━━━━━━━
+👤 {user.first_name}
+👛 Balance: <b>{fmt(udata['balance'])}</b>
+🎒 Items owned: <b>{len(owned_keys)}</b>
+━━━━━━━━━━━━━━━
+Select an item to sell 👇"""
+        await edit(text, sell_inventory_keyboard(owned_keys, page))
+        return
+
+    # ── Item detail ─────────────────────────────────────────────
+    if data.startswith("sell_item_") or data.startswith("sell_now_"):
+        await query.answer()
+        prefix = "sell_item_" if data.startswith("sell_item_") else "sell_now_"
+        ikey   = data[len(prefix):]
+        item   = FLEX_ITEMS.get(ikey)
+        if not item:
+            return
+
+        owned_qty  = inventory.get(ikey, {}).get("qty", 0)
+        sell_price = int(item["price"] * SELL_RETURN_PERCENT)
+        tax_amt    = item["price"] - sell_price  # 15% tax cut
+
+        text = f"""{item['emoji']} <b>{item['name']}</b>
+━━━━━━━━━━━━━━━
+💰 Original price: <b>{fmt(item['price'])}</b>
+💸 Selling price: <b>{fmt(sell_price)}</b>
+✂️ Selling tax (15%): -{fmt(tax_amt)}
+🎒 You own: <b>{owned_qty}x</b>
+━━━━━━━━━━━━━━━
+👛 After sell: {fmt(udata['balance'] + sell_price)}"""
+
+        await edit(text, sell_item_keyboard(ikey))
+        return
+
+    # ── Confirm screen ──────────────────────────────────────────
+    if data.startswith("sell_confirm_"):
+        ikey = data[len("sell_confirm_"):]
+        item = FLEX_ITEMS.get(ikey)
+        if not item:
+            await query.answer("❌ Item not found!", show_alert=True)
+            return
+
+        owned = inventory.get(ikey, {})
+        if not owned or owned.get("qty", 0) <= 0:
+            await query.answer("❌ You no longer own this item!", show_alert=True)
+            return
+
+        sell_price = int(item["price"] * SELL_RETURN_PERCENT)
+        tax_amt    = item["price"] - sell_price
+
+        text = f"""{item['emoji']} <b>Confirm Sale</b>
+━━━━━━━━━━━━━━━
+🛍️ Item: <b>{item['name']}</b>
+💰 Original: {fmt(item['price'])}
+✂️ Tax (15%): -{fmt(tax_amt)}
+💸 You receive: <b>{fmt(sell_price)}</b>
+━━━━━━━━━━━━━━━
+Are you sure?"""
+
+        await edit(text, sell_confirm_keyboard(ikey))
+        return
+
+    # ── Execute sell ────────────────────────────────────────────
+    if data.startswith("sell_do_"):
+        ikey = data[len("sell_do_"):]
+        item = FLEX_ITEMS.get(ikey)
+        if not item:
+            await query.answer("❌ Item not found!", show_alert=True)
+            return
+
+        # Fresh fetch
+        udata2    = await get_user(user.id, group_id, user.first_name)
+        inventory2 = udata2.get("inventory", {})
+        owned     = inventory2.get(ikey, {})
+
+        if not owned or owned.get("qty", 0) <= 0:
+            await query.answer("❌ You no longer own this item!", show_alert=True)
+            return
+
+        sell_price  = int(item["price"] * SELL_RETURN_PERCENT)
+        tax_amt     = item["price"] - sell_price
+        new_qty     = owned["qty"] - 1
+
+        if new_qty <= 0:
+            del inventory2[ikey]
+        else:
+            inventory2[ikey]["qty"] = new_qty
+
+        new_balance = udata2["balance"] + sell_price
+        await update_user(user.id, group_id, {"balance": new_balance, "inventory": inventory2})
+
+        # Popup
+        await query.answer(f"{item['emoji']} {item['name'].split(' ',1)[1]} is sold!", show_alert=True)
+
+        # Clear session
+        context.user_data.pop("sell", None)
+
+        # Receipt in chat
+        receipt = f"""{item['emoji']} <b>Item Sold!</b>
+━━━━━━━━━━━━━━━
+🛍️ Item: <b>{item['name']}</b>
+🌟 Rarity: {get_rarity(item['price'])}
+━━━━━━━━━━━━━━━
+💰 Original price: {fmt(item['price'])}
+✂️ Selling tax (15%): -{fmt(tax_amt)}
+💸 Amount received: <b>{fmt(sell_price)}</b>
+━━━━━━━━━━━━━━━
+👛 New balance: {fmt(new_balance)}"""
+
+        try:
+            await query.edit_message_text(receipt, parse_mode="HTML", reply_markup=None)
+        except Exception:
+            pass
+        return
