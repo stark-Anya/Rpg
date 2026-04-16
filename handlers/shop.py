@@ -47,7 +47,7 @@ def weapons_page_keyboard(page: int, inventory: dict, balance: int):
         nav.append(InlineKeyboardButton("𝐍𝐞𝐱𝐭 ▶", callback_data=f"shop_weapons_{page+1}"))
     if nav:
         rows.append(nav)
-    rows.append([InlineKeyboardButton("🏠 𝐌𝐚𝐢𝐦 𝐌𝐞𝐧𝐮", callback_data="shop_main")])
+    rows.append([InlineKeyboardButton("🏠 𝐌𝐚𝐢𝐧 𝐌𝐞𝐧𝐮", callback_data="shop_main")])
     return InlineKeyboardMarkup(rows)
 
 
@@ -367,13 +367,13 @@ def sell_inventory_keyboard(owned_keys: list, page: int):
 
     nav = []
     if page > 0:
-        nav.append(InlineKeyboardButton("◀️ Prev", callback_data=f"sell_page_{page-1}"))
+        nav.append(InlineKeyboardButton("◀ 𝐏𝐫𝐞𝐯", callback_data=f"sell_page_{page-1}"))
     if start + SELL_PER_PAGE < len(owned_keys):
-        nav.append(InlineKeyboardButton("Next ▶️", callback_data=f"sell_page_{page+1}"))
+        nav.append(InlineKeyboardButton("𝐍𝐞𝐱𝐭 ▶", callback_data=f"sell_page_{page+1}"))
     if nav:
         rows.append(nav)
 
-    rows.append([InlineKeyboardButton("🚫 Close", callback_data="sell_close")])
+    rows.append([InlineKeyboardButton("❌ 𝐂𝐥𝐨𝐬𝐞", callback_data="sell_close")])
     return InlineKeyboardMarkup(rows)
 
 
