@@ -47,39 +47,39 @@ def gift_list_keyboard(balance: int, page: int = 0):
     # Nav row
     nav = []
     if page > 0:
-        nav.append(InlineKeyboardButton("◀️ Prev", callback_data=f"gift_page_{page-1}"))
+        nav.append(InlineKeyboardButton("◀️ 𝐏𝐫𝐞𝐯", callback_data=f"gift_page_{page-1}"))
     if start + ITEMS_PER_PAGE < total:
-        nav.append(InlineKeyboardButton("Next ▶️", callback_data=f"gift_page_{page+1}"))
+        nav.append(InlineKeyboardButton("𝐍𝐞𝐱𝐭 ▶️", callback_data=f"gift_page_{page+1}"))
     if nav:
         rows.append(nav)
 
-    rows.append([InlineKeyboardButton("🚫 Close", callback_data="gift_cancel")])
+    rows.append([InlineKeyboardButton("❌ 𝐂𝐥𝐨𝐬𝐞", callback_data="gift_cancel")])
     return InlineKeyboardMarkup(rows)
 
 
 def gift_item_keyboard(ikey: str, can_afford: bool):
     if can_afford:
-        action_btn = InlineKeyboardButton("🎁 Send This Gift", callback_data=f"gift_select_{ikey}")
+        action_btn = InlineKeyboardButton("🎁 𝐒𝐞𝐧𝐝 𝐓𝐡𝐢𝐬 𝐆𝐢𝐟𝐭", callback_data=f"gift_select_{ikey}")
     else:
-        action_btn = InlineKeyboardButton("💸 Can't Afford", callback_data="gift_poor")
+        action_btn = InlineKeyboardButton("💸 𝙲𝚊𝚗𝚝 𝙰𝚏𝚏𝚘𝚛𝚍", callback_data="gift_poor")
     return InlineKeyboardMarkup([
         [action_btn],
-        [InlineKeyboardButton("🔙 Back to List", callback_data="gift_back_list")]
+        [InlineKeyboardButton("🔙 𝐁𝐚𝐜𝐤 𝐓𝐨 𝐥𝐢𝐬𝐭", callback_data="gift_back_list")]
     ])
 
 
 def gift_confirm_keyboard(ikey: str):
     return InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("✅ Confirm & Send", callback_data="gift_confirm"),
-            InlineKeyboardButton("🔙 Back",           callback_data=f"gift_back_item_{ikey}")
+            InlineKeyboardButton("✅ 𝐂𝐨𝐧𝐟𝐨𝐫𝐦 & 𝐒𝐞𝐧𝐝", callback_data="gift_confirm"),
+            InlineKeyboardButton("🔙 𝙱𝚊𝚌𝚔",           callback_data=f"gift_back_item_{ikey}")
         ]
     ])
 
 
 def gift_message_keyboard():
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("⏭️ Skip Message", callback_data="gift_skipmsg")]
+        [InlineKeyboardButton("⏭️ 𝕊𝕜𝕚𝕡 𝕄𝕖𝕤𝕤𝕖𝕘𝕖𝕤", callback_data="gift_skipmsg")]
     ])
 
 
@@ -131,13 +131,13 @@ async def gift_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "page":        0,
     }
 
-    text = f"""🎁 <b>Gift Shop</b>
+    text = f"""🎁 <b>𝐆𝐢𝐟𝐭 𝐒𝐭𝐨𝐫𝐞</b>
 ━━━━━━━━━━━━━━━
-👤 Gifting to: <b>{tname}</b>
+👤 Your Name : <b>{tname}</b>
 👛 Your wallet: <b>{fmt(udata['balance'])}</b>
-📦 Gift surcharge: +{fmt(GIFT_SURCHARGE)} per item
+📦 Gift charge: +{fmt(GIFT_SURCHARGE)} per item
 ━━━━━━━━━━━━━━━
-Pick a flex item to gift 👇"""
+<b>𝑃𝑖𝑐𝑘 𝑎 𝐹𝑙𝑒𝑥 𝑎𝑛𝑑 𝑉𝑖𝑝 𝑖𝑡𝑒𝑚 𝑡𝑜 𝑠𝑒𝑛𝑑</b> 👇"""
 
     await send_with_image(
         update, group_id, IMG_GIFT, text,
@@ -186,7 +186,7 @@ async def gift_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     # ── Can't afford popup ──────────────────────────────────────
     if data == "gift_poor":
-        await query.answer("💸 You can't afford this gift!", show_alert=True)
+        await query.answer("💸 𝚈𝚘𝚞 𝙲𝚊𝚗'𝚝 𝙰𝚏𝚏𝚘𝚛𝚍 𝚃𝚑𝚒𝚜 𝙶𝚒𝚏𝚝!", show_alert=True)
         return
 
     # ── Page navigation ─────────────────────────────────────────
@@ -196,13 +196,13 @@ async def gift_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
         gd["page"] = page
         context.user_data["gift"] = gd
 
-        text = f"""🎁 <b>Gift Shop</b>
+        text = f"""🎁 <b> 𝐆𝐢𝐟𝐭 𝐒𝐡𝐨𝐩</b>
 ━━━━━━━━━━━━━━━
 👤 Gifting to: <b>{gd['target_name']}</b>
 👛 Your wallet: <b>{fmt(balance)}</b>
 📦 Gift surcharge: +{fmt(GIFT_SURCHARGE)} per item
 ━━━━━━━━━━━━━━━
-Pick a flex item to gift 👇"""
+<b>𝑃𝑖𝑐𝑘 𝑎 𝐹𝑙𝑒𝑥 𝑎𝑛𝑑 𝑉𝑖𝑝 𝑖𝑡𝑒𝑚 𝑡𝑜 𝑠𝑒𝑛𝑑</b> 👇"""
         await edit(text, gift_list_keyboard(balance, page))
         return
 
@@ -210,13 +210,13 @@ Pick a flex item to gift 👇"""
     if data == "gift_back_list":
         await query.answer()
         page = gd.get("page", 0)
-        text = f"""🎁 <b>Gift Shop</b>
+        text = f"""🎁 <b>𝐆𝐢𝐟𝐭 𝐒𝐡𝐨𝐩</b>
 ━━━━━━━━━━━━━━━
 👤 Gifting to: <b>{gd['target_name']}</b>
 👛 Your wallet: <b>{fmt(balance)}</b>
 📦 Gift surcharge: +{fmt(GIFT_SURCHARGE)} per item
 ━━━━━━━━━━━━━━━
-Pick a flex item to gift 👇"""
+<b>𝑃𝑖𝑐𝑘 𝑎 𝐹𝑙𝑒𝑥 𝑎𝑛𝑑 𝑉𝑖𝑝 𝑖𝑡𝑒𝑚 𝑡𝑜 𝑠𝑒𝑛𝑑</b> 👇"""
         await edit(text, gift_list_keyboard(balance, page))
         return
 
@@ -237,7 +237,6 @@ Pick a flex item to gift 👇"""
 💰 Item price: {fmt(item['price'])}
 📦 Gift charge: +{fmt(GIFT_SURCHARGE)}
 💸 Total: <b>{fmt(gift_price)}</b>
-🌟 Rarity: {get_rarity(item['price'])}
 ⏱️ Duration: ♾️ Permanent
 ━━━━━━━━━━━━━━━
 👛 Your wallet: {fmt(balance)}"""
@@ -255,7 +254,7 @@ Pick a flex item to gift 👇"""
         gift_price = item["price"] + GIFT_SURCHARGE
 
         if balance < gift_price:
-            await query.answer("💸 Not enough balance!", show_alert=True)
+            await query.answer("💸 𝙽𝚘𝚝 𝙴𝚗𝚘𝚞𝚐𝚑 𝙱𝚊𝚕𝚊𝚗𝚌𝚎!", show_alert=True)
             return
 
         gd["item_key"] = ikey
@@ -300,7 +299,6 @@ Or tap Skip below 👇"""
 💰 Item price: {fmt(item['price'])}
 📦 Gift charge: +{fmt(GIFT_SURCHARGE)}
 💸 Total: <b>{fmt(gift_price)}</b>
-🌟 Rarity: {get_rarity(item['price'])}
 ━━━━━━━━━━━━━━━
 👛 Your wallet: {fmt(balance)}"""
 
@@ -337,14 +335,14 @@ async def gift_message_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     gift_price = item["price"] + GIFT_SURCHARGE
     msg_line   = f'💬 Message: <i>"{gd["message"]}"</i>'
 
-    confirm_text = f"""🎁 <b>Confirm Gift</b>
+    confirm_text = f"""🎁 <b>𝐂𝐨𝐧𝐟𝐨𝐫𝐦 𝐆𝐢𝐟𝐭</b>
 ━━━━━━━━━━━━━━━
 👤 To: <b>{gd['target_name']}</b>
 {item['emoji']} <b>{item['name']}</b>
 💰 Total: <b>{fmt(gift_price)}</b>
 {msg_line}
 ━━━━━━━━━━━━━━━
-Ready to send?"""
+<b>ᴀʀᴇ ʏᴏᴜ ʀᴇᴀᴅʏ ᴛᴏ sᴇɴᴅ ɢɪꜰᴛ ?</b>"""
 
     await update.message.reply_text(
         confirm_text, parse_mode="HTML",
@@ -359,14 +357,14 @@ async def _show_confirm(edit_fn, gd: dict, balance: int):
     gift_price = item["price"] + GIFT_SURCHARGE
     msg_line   = f'💬 Message: <i>"{gd["message"]}"</i>' if gd["message"] else "💬 Message: None"
 
-    text = f"""🎁 <b>Confirm Gift</b>
+    text = f"""🎁 <b>𝐂𝐨𝐧𝐟𝐨𝐫𝐦 𝐆𝐢𝐟𝐭</b>
 ━━━━━━━━━━━━━━━
 👤 To: <b>{gd['target_name']}</b>
 {item['emoji']} <b>{item['name']}</b>
 💰 Total: <b>{fmt(gift_price)}</b>
 {msg_line}
 ━━━━━━━━━━━━━━━
-Ready to send?"""
+<b>ᴀʀᴇ ʏᴏᴜ ʀᴇᴀᴅʏ ᴛᴏ sᴇɴᴅ ɢɪꜰᴛ ?</b>"""
 
     await edit_fn(text, gift_confirm_keyboard(gd["item_key"]))
 
@@ -387,7 +385,7 @@ async def _execute_gift(query, context, gd: dict):
     if sdata["balance"] < gift_price:
         try:
             await query.edit_message_caption(
-                caption="💸 <b>Not enough balance!</b> Gift cancelled.",
+                caption="💸 <b>𝙽𝚘𝚝 𝙴𝚗𝚘𝚞𝚐𝚑 𝙱𝚊𝚕𝚊𝚗𝚌𝚎 !</b> 𝙶𝚒𝚏𝚝 𝙲𝚊𝚗𝚌𝚎𝚕𝚕𝚎𝚍.",
                 parse_mode="HTML", reply_markup=None
             )
         except Exception:
@@ -410,7 +408,7 @@ async def _execute_gift(query, context, gd: dict):
     msg_line = f'\n💬 <i>"{msg}"</i>' if msg else ""
 
     # ── Group message ──────────────────────────────────────────
-    group_text = f"""🎁 <b>Gift Sent!</b>
+    group_text = f"""🎁 <b>𝐆𝐢𝐟𝐭 𝐒𝐞𝐧𝐭 !</b>
 ━━━━━━━━━━━━━━━
 💌 From: <b>{sender_name}</b>
 🎯 To: <b>{target_name}</b>
@@ -419,7 +417,7 @@ async def _execute_gift(query, context, gd: dict):
 💰 Item: {fmt(item['price'])}
 📦 Charge: +{fmt(GIFT_SURCHARGE)}
 💸 Total paid: {fmt(gift_price)}
-🌟 {get_rarity(item['price'])}{msg_line}"""
+🌟 {msg_line}"""
 
     try:
         await query.delete_message()
@@ -429,14 +427,14 @@ async def _execute_gift(query, context, gd: dict):
     await send_with_image(context.bot, group_id, IMG_GIFT, group_text)
 
     # ── Private DM to receiver ──────────────────────────────────
-    dm_text = f"""🎁 <b>You got a gift!</b>
+    dm_text = f"""🎁 <b>𝕐𝕠𝕦 𝔾𝕠𝕥 𝔸 𝔾𝕚𝕗𝕥 !</b>
 ━━━━━━━━━━━━━━━
 💌 From: <b>{sender_name}</b>
 {item['emoji']} <b>{item['name']}</b>
 💰 Value: {fmt(item['price'])}
-🌟 {get_rarity(item['price'])}{msg_line}
+🌟 {msg_line}
 ━━━━━━━━━━━━━━━
-✅ Added to your inventory!"""
+✅ 𝐴𝑑𝑑 𝑡𝑜 𝑌𝑜𝑢 𝐼𝑛𝑣𝑒𝑛𝑡𝑜𝑟𝑦 !"""
 
     try:
         if IMG_GIFT:
