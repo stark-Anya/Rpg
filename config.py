@@ -71,6 +71,10 @@ WAR_DRAW_PERCENT   = 0.45
 #====== GIFT===================#
 GIFT_SURCHARGE = 15   # Extra coins charged on top of item price for gifting
 
+#=======KILL REWAERD===================#
+KILL_REWARD_MIN = 400  # Minimum extra reward per kill
+KILL_REWARD_MAX = 700  # Maximum Extra rewards per kill.
+
 
 # ── Marriage ───────────────────────────────────────────────────
 PROPOSE_TAX  = 0.05
@@ -94,7 +98,7 @@ IMG_REVIVE   = os.getenv("IMG_REVIVE",   "")
 IMG_WANTED   = os.getenv("IMG_WANTED",   "")
 IMG_SHOP     = os.getenv("IMG_SHOP",     "")
 IMG_HEAL     = os.getenv("IMG_HEAL",     "")
-IMG_GIFT     = os.getenv("IMG_GIFT",     "")
+IMG_GIFT     = os.getenv("IMG_GIFT",     "https://h.uguu.se/BWrgKcLO.jpg")
 
 
 # ── Rarity ─────────────────────────────────────────────────────
