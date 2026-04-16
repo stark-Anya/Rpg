@@ -1,3 +1,11 @@
+#===================================================#
+#=============== OWNER : MISTER STARK ==============#
+#===================================================#
+#============== USERS & BOT DATABASE  ==========={==#
+#===================================================#
+
+
+
 import motor.motor_asyncio
 from config import MONGO_URI, DB_NAME
 
@@ -14,3 +22,12 @@ async def ensure_indexes():
     await users_col.create_index([("user_id", 1), ("group_id", 1)], unique=True)
     await groups_col.create_index("group_id", unique=True)
     await marriages_col.create_index("user1_id", unique=True)
+
+
+
+
+#===================================================#
+#=============== OWNER : MISTER STARK ==============#
+#===================================================#
+#============== CREDIT NA LENA BACHHO 🤣 ===========#
+#===================================================#
