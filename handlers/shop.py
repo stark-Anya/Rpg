@@ -93,7 +93,7 @@ def weapon_action_kb(item_key: str, can_buy: bool, is_owned: bool):
     if is_owned:
         buy_btn = InlineKeyboardButton("✅ 𝐎𝐰𝐧𝐞𝐝", callback_data=f"shop_owned_w_{item_key}")
     elif can_buy:
-        buy_btn = InlineKeyboardButton("🛒 𝐁𝐮𝐲 𝐍𝐨𝐰", callback_data=f"shop_buy_w_{item_key}")
+        buy_btn = InlineKeyboardButton("💳 𝐁𝐮𝐲 𝐍𝐨𝐰", callback_data=f"shop_buy_w_{item_key}")
     else:
         buy_btn = InlineKeyboardButton("❌ 𝐂𝐚𝐧'𝐭 𝐀𝐟𝐟𝐨𝐫𝐝", callback_data=f"shop_poor_w_{item_key}")
 
@@ -107,7 +107,7 @@ def flex_action_kb(item_key: str, can_buy: bool, is_owned: bool):
     if is_owned:
         buy_btn = InlineKeyboardButton("✅ 𝐎𝐰𝐧𝐞𝐝", callback_data=f"shop_owned_f_{item_key}")
     elif can_buy:
-        buy_btn = InlineKeyboardButton("🛒 𝐁𝐨𝐮 𝐍𝐨𝐰", callback_data=f"shop_buy_f_{item_key}")
+        buy_btn = InlineKeyboardButton("💳 𝐁𝐮𝐲 𝐍𝐨𝐰", callback_data=f"shop_buy_f_{item_key}")
     else:
         buy_btn = InlineKeyboardButton("❌ 𝐂𝐚𝐧'𝐭 𝐀𝐟𝐟𝐨𝐫𝐝", callback_data=f"shop_poor_f_{item_key}")
 
@@ -126,8 +126,8 @@ async def shop(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = f"""🛒 <b>𝐊𝐢𝐚𝐫𝐚 𝐌𝐚𝐫𝐤𝐞𝐭𝐩𝐥𝐚𝐜𝐞</b>
 ━━━━━━━━━━━━━━━
-👤 Customer: <b>{user.first_name}</b>
-👛 Wallet: <b>{fmt(udata['balance'])}</b>
+👤 <b>Customer:</b> <b>{user.first_name}</b>
+👛 <b>Wallet:</b> <b>{fmt(udata['balance'])}</b>
 ━━━━━━━━━━━━━━━
 <i>Select a category to browse our goods!</i>"""
 
@@ -169,8 +169,8 @@ async def shop_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
         await query.answer()
         text = f"""🛒 <b>𝐊𝐢𝐚𝐫𝐚 𝐌𝐚𝐫𝐤𝐞𝐭𝐩𝐥𝐚𝐜𝐞</b>
 ━━━━━━━━━━━━━━━
-👤 Customer: <b>{user.first_name}</b>
-👛 Wallet: <b>{fmt(balance)}</b>
+👤<b> Customer:</b> <b>{user.first_name}</b>
+👛<b> Wallet:</blockquote> <b>{fmt(balance)}</b>
 ━━━━━━━━━━━━━━━
 <i>Select a category to browse our goods!</i>"""
         await edit(text, main_keyboard())
@@ -181,9 +181,9 @@ async def shop_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
         await query.answer()
         page = int(data.split("_")[-1])
         text = f"""⚔️ <b>𝐖𝐞𝐚𝐩𝐨𝐧𝐬 𝐀𝐫𝐦𝐨𝐫𝐲</b>
-Lethal gear for killers.
+<b>Lethal gear for killers.</b>
 ━━━━━━━━━━━━━━━
-💰 Balance: <b>{fmt(balance)}</b>"""
+<b>💰 Balance:</b> <b>{fmt(balance)}</b>"""
         await edit(text, weapons_page_keyboard(page, inventory, balance))
         return
 
@@ -192,9 +192,9 @@ Lethal gear for killers.
         await query.answer()
         page = int(data.split("_")[-1])
         text = f"""💎 <b>𝐕𝐈𝐏 𝐅𝐥𝐞𝐱 𝐙𝐨𝐧𝐞</b>
-Pure status symbols.
+<b>Pure status symbols.</b>
 ━━━━━━━━━━━━━━━
-💰 Balance: <b>{fmt(balance)}</b>"""
+<b>💰 Balance:</b> <b>{fmt(balance)}</b>"""
         await edit(text, flex_page_keyboard(page, inventory, balance))
         return
 
@@ -216,9 +216,9 @@ Pure status symbols.
             if rem > 0:
                 expire_str = f"\n⏳ <b>Expires in:</b> {rem//3600}h {(rem%3600)//60}m"
 
-        text = f"""{item['emoji']} <b>{item['name']}</b>
+        text = f"""<b>{item['name']}</b>
 ━━━━━━━━━━━━━━━
-📖 {item['desc']}
+📖 <b>{item['desc']}</b>
 ━━━━━━━━━━━━━━━
 💰 <b>Price:</b> {fmt(item['price'])}
 🌟 <b>Rarity:</b> {get_rarity(item['price'])}
@@ -242,9 +242,9 @@ Pure status symbols.
         is_owned = owned.get("qty", 0) > 0
         can_buy  = balance >= item["price"]
 
-        text = f"""{item['emoji']} <b>{item['name']}</b>
+        text = f"""<b>{item['name']}</b>
 ━━━━━━━━━━━━━━━
-📖 {item['desc']}
+📖 <b>{item['desc']}</b>
 ━━━━━━━━━━━━━━━
 💰 <b>Price:</b> {fmt(item['price'])}
 🌟 <b>Rarity:</b> {get_rarity(item['price'])}
@@ -319,9 +319,9 @@ Pure status symbols.
                 rem = int(owned["expires_at"] - time.time())
                 if rem > 0:
                     expire_str = f"\n⏳ <b>Expires in:</b> {rem//3600}h {(rem%3600)//60}m"
-            text = f"""{item['emoji']} <b>{item['name']}</b>
+            text = f"""<b>{item['name']}</b>
 ━━━━━━━━━━━━━━━
-📖 {item['desc']}
+📖 <b>{item['desc']}</b>
 ━━━━━━━━━━━━━━━
 💰 <b>Price:</b> {fmt(item['price'])}
 🌟 <b>Rarity:</b> {get_rarity(item['price'])}
@@ -331,9 +331,9 @@ Pure status symbols.
 👛 <b>Your Wallet:</b> {fmt(new_balance)}{expire_str}"""
             await edit(text, weapon_action_kb(ikey, False, True))
         else:
-            text = f"""{item['emoji']} <b>{item['name']}</b>
+            text = f"""<b>{item['name']}</b>
 ━━━━━━━━━━━━━━━
-📖 {item['desc']}
+📖 <b>{item['desc']}</b>
 ━━━━━━━━━━━━━━━
 💰 <b>Price:</b> {fmt(item['price'])}
 🌟 <b>Rarity:</b> {get_rarity(item['price'])}
@@ -427,11 +427,11 @@ async def sell(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = f"""💸 <b>𝐒𝐞𝐥𝐥 𝐈𝐭𝐞𝐦𝐬</b>
 ━━━━━━━━━━━━━━━
-👤 {user.first_name}
-👛 Balance: <b>{fmt(udata['balance'])}</b>
-🎒 Items owned: <b>{len(owned_keys)}</b>
+👤 <b>Hello</b> {user.first_name}
+👛<b> Balance:</b> <b>{fmt(udata['balance'])}</b>
+🎒 <b>Items owned:</b> <b>{len(owned_keys)}</b>
 ━━━━━━━━━━━━━━━
-𝑆𝑒𝑙𝑒𝑐𝑡 𝐼𝑡𝑒𝑚 𝑡𝑜 𝑠𝑒𝑙𝑙 👇"""
+<b>𝑆𝑒𝑙𝑒𝑐𝑡 𝐼𝑡𝑒𝑚 𝑡𝑜 𝑠𝑒𝑙𝑙 👇</b>"""
 
     await update.message.reply_text(
         text, parse_mode="HTML",
@@ -484,9 +484,9 @@ async def sell_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
 
         text = f"""💸 <b>𝐒𝐞𝐥𝐥 𝐈𝐭𝐞𝐦𝐬</b>
 ━━━━━━━━━━━━━━━
-👤 {user.first_name}
-👛 Balance: <b>{fmt(udata['balance'])}</b>
-🎒 Items owned: <b>{len(owned_keys)}</b>
+👤 <b>Hey</b> {user.first_name}
+👛 <b>Balance:</b> <b>{fmt(udata['balance'])}</b>
+🎒 <b>Items owned:</b> <b>{len(owned_keys)}</b>
 ━━━━━━━━━━━━━━━
 𝐒𝐞𝐥𝐞𝐜𝐭 𝐚𝐧 𝐢𝐭𝐞𝐦 𝐭𝐨 𝐬𝐞𝐥𝐥. 👇"""
         await edit(text, sell_inventory_keyboard(owned_keys, page))
@@ -501,9 +501,9 @@ async def sell_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
 
         text = f"""💸 <b>𝐒𝐞𝐥𝐥 𝐈𝐭𝐞𝐦</b>
 ━━━━━━━━━━━━━━━
-👤 {user.first_name}
-👛 Balance: <b>{fmt(udata['balance'])}</b>
-🎒 Items owned: <b>{len(owned_keys)}</b>
+👤<b> Hiee</b> {user.first_name}
+👛 <b>Balance:</b> <b>{fmt(udata['balance'])}</b>
+🎒 <b>Items owned:</b> <b>{len(owned_keys)}</b>
 ━━━━━━━━━━━━━━━
 𝐒𝐞𝐥𝐞𝐜𝐭 𝐚𝐧 𝐢𝐭𝐞𝐦 𝐭𝐨 𝐬𝐞𝐥𝐥. 👇"""
         await edit(text, sell_inventory_keyboard(owned_keys, page))
@@ -517,21 +517,21 @@ async def sell_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
        if not item:
            return
 
-        owned_qty  = inventory.get(ikey, {}).get("qty", 0)
-        sell_price = int(item["price"] * SELL_RETURN_PERCENT)
-        tax_amt    = item["price"] - sell_price
+       owned_qty  = inventory.get(ikey, {}).get("qty", 0)
+       sell_price = int(item["price"] * SELL_RETURN_PERCENT)
+       tax_amt    = item["price"] - sell_price
 
-        text = f"""{item['emoji']} <b>{item['name']}</b>
+       text = f"""<b>{item['name']}</b>
 ━━━━━━━━━━━━━━━
-💰 Original price: <b>{fmt(item['price'])}</b>
-💸 Selling price: <b>{fmt(sell_price)}</b>
-✂️ Selling tax (15%): -{fmt(tax_amt)}
-🎒 You own: <b>{owned_qty}x</b>
+💰 <b>Original price:</b> <b>{fmt(item['price'])}</b>
+💸 <b>Selling price: </b><b>{fmt(sell_price)}</b>
+✂️ <b>Selling tax (15%):</b> -{fmt(tax_amt)}
+🎒<b> You own:</b> <b>{owned_qty}x</b>
 ━━━━━━━━━━━━━━━
-👛 After sell: {fmt(udata['balance'] + sell_price)}"""
+👛 <b>After sell:</b> {fmt(udata['balance'] + sell_price)}"""
 
-        await edit(text, sell_item_keyboard(ikey))
-        return
+       await edit(text, sell_item_keyboard(ikey))
+       return
 
     
     # ── Confirm screen ──────────────────────────────────────────
@@ -553,10 +553,10 @@ async def sell_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
 
         text = f"""{item['emoji']} <b>𝐂𝐨𝐧𝐟𝐢𝐫𝐦 𝐒𝐞𝐥𝐥</b>
 ━━━━━━━━━━━━━━━
-🛍️ Item: <b>{item['name']}</b>
-💰 Original: {fmt(item['price'])}
-✂️ Tax (15%): -{fmt(tax_amt)}
-💸 You receive: <b>{fmt(sell_price)}</b>
+🛍️ <b>Item:</b> <b>{item['name']}</b>
+💰 <b>Original:</b> {fmt(item['price'])}
+✂️ <b>Tax (15%):</b> -{fmt(tax_amt)}
+💸 <b>You receive:</b> <b>{fmt(sell_price)}</b>
 ━━━━━━━━━━━━━━━
 𝔸𝕣𝕖 𝕪𝕠𝕦 𝕤𝕦𝕣𝕖 ?"""
 
@@ -601,14 +601,14 @@ async def sell_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
         # Receipt in chat
         receipt = f"""{item['emoji']} <b>𝐈𝐭𝐞𝐦 𝐒𝐨𝐥𝐝 !</b>
 ━━━━━━━━━━━━━━━
-🛍️ Item: <b>{item['name']}</b>
-🌟 Rarity: {get_rarity(item['price'])}
+🛍️ <b>Item:</b> <b>{item['name']}</b>
+🌟 <b>Rarity:</b> {get_rarity(item['price'])}
 ━━━━━━━━━━━━━━━
-💰 Original price: {fmt(item['price'])}
-✂️ Selling tax (15%): -{fmt(tax_amt)}
-💸 Amount received: <b>{fmt(sell_price)}</b>
+💰 <b>Original price:</b> {fmt(item['price'])}
+✂️ <b>Selling tax (15%):</b> -{fmt(tax_amt)}
+💸 <b>Amount received:</b> <b>{fmt(sell_price)}</b>
 ━━━━━━━━━━━━━━━
-👛 New balance: {fmt(new_balance)}"""
+👛 <b>New balance:</b> {fmt(new_balance)}"""
 
         try:
             await query.edit_message_text(receipt, parse_mode="HTML", reply_markup=None)
