@@ -69,11 +69,11 @@ WAR_DRAW_PERCENT   = 0.45
 
 
 #====== GIFT===================#
-GIFT_SURCHARGE = 15   # Extra coins charged on top of item price for gifting
+GIFT_SURCHARGE = 30   # Extra coins charged on top of item price for gifting
 
 #=======KILL REWAERD===================#
-KILL_REWARD_MIN = 400  # Minimum extra reward per kill
-KILL_REWARD_MAX = 700  # Maximum Extra rewards per kill.
+KILL_REWARD_MIN = 300  # Minimum extra reward per kill
+KILL_REWARD_MAX = 600  # Maximum Extra rewards per kill.
 
 
 # ── Marriage ───────────────────────────────────────────────────
