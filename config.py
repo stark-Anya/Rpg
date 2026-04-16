@@ -111,7 +111,7 @@ IMG_FARM     = os.getenv("IMG_FARM",     "https://o.uguu.se/NPWbDeJH.jpg")
 IMG_PROTECT  = os.getenv("IMG_PROTECT",  "")
 IMG_REVIVE   = os.getenv("IMG_REVIVE",   "")
 IMG_WANTED   = os.getenv("IMG_WANTED",   "")
-IMG_SHOP     = os.getenv("IMG_SHOP",     "")
+IMG_SHOP     = os.getenv("IMG_SHOP",     "https://d.uguu.se/xqVlzKKg.jpg")
 IMG_HEAL     = os.getenv("IMG_HEAL",     "")
 IMG_GIFT     = os.getenv("IMG_GIFT",     "https://h.uguu.se/BWrgKcLO.jpg")
 
