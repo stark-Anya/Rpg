@@ -1,3 +1,11 @@
+#===================================================#
+#=============== OWNER : MISTER STARK ==============#
+#===================================================#
+#============== CREDIT NA LENA BACHHO 🤣 ===========#
+#===================================================#
+
+
+
 import time
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
