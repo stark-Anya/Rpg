@@ -16,14 +16,21 @@ OWNER_ID      = int(os.getenv("OWNER_ID", "5864182070"))
 BOT_USERNAME  = os.getenv("BOT_USERNAME", "KiaraGameBot") #WITHOUT @@@@@
 
 # ── Links ──────────────────────────────────────────────────────
-SUPPORT_LINK   = os.getenv("SUPPORT_LINK", "https://t.me/CarelessxWorld")
-UPDATE_LINK    = os.getenv("UPDATE_LINK",  "https://t.me/CarelessxCoder")
-OWNER_LINK     = os.getenv("OWNER_LINK",   "https://t.me/CarelessxOwner")
-GUIDE_PDF_LINK = os.getenv("GUIDE_PDF_LINK","https://your-guide.com")
+SUPPORT_LINK   = os.getenv("SUPPORT_LINK", "https://t.me/CarelessxWorld")     # You support group link
+UPDATE_LINK    = os.getenv("UPDATE_LINK",  "https://t.me/CarelessxCoder")     # Your updates chanell link 
+OWNER_LINK     = os.getenv("OWNER_LINK",   "https://t.me/CarelessxOwner")     # Your id link 
+GUIDE_PDF_LINK = os.getenv("GUIDE_PDF_LINK","https://your-guide.com")     #This system is not yet installed in the bot, so you can leave it blank. 
 
 # ── MongoDB ────────────────────────────────────────────────────
-MONGO_URI = os.getenv("MONGO_URI", "MONGO_URI")
+MONGO_URI = os.getenv("MONGO_URI", "MONGO_URI")     #Your mongo db uri 
 DB_NAME   = "rpg_bot"
+
+
+#===================================================#
+#===================================================#
+#========= NO NEED TO CHNAGE FROM HERE =============#
+#===================================================#
+#===================================================#
 
 # ── Currency ───────────────────────────────────────────────────
 CURRENCY_SYMBOL = "$" #in dollers
@@ -77,7 +84,7 @@ WAR_DRAW_PERCENT   = 0.45
 
 
 #====== GIFT===================#
-GIFT_SURCHARGE = 30   # Extra coins charged on top of item price for gifting
+GIFT_SURCHARGE = 30   # EXTRA ammount charged on top of item price for gifting
 
 #=======KILL REWAERD===================#
 KILL_REWARD_MIN = 300  # Minimum extra reward per kill
