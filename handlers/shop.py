@@ -379,16 +379,16 @@ def sell_inventory_keyboard(owned_keys: list, page: int):
 
 def sell_item_keyboard(ikey: str):
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("💸 Sell Now", callback_data=f"sell_now_{ikey}")],
-        [InlineKeyboardButton("🔙 Back",     callback_data="sell_back_list")]
+        [InlineKeyboardButton("💸 𝐒𝐞𝐥𝐥 𝐍𝐨𝐰", callback_data=f"sell_now_{ikey}")],
+        [InlineKeyboardButton("🔙 𝐁𝐚𝐜𝐤",     callback_data="sell_back_list")]
     ])
 
 
 def sell_confirm_keyboard(ikey: str):
     return InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("✅ Confirm", callback_data=f"sell_do_{ikey}"),
-            InlineKeyboardButton("🔙 Back",   callback_data=f"sell_now_{ikey}")
+            InlineKeyboardButton("✅ 𝐂𝐨𝐧𝐟𝐨𝐫𝐦", callback_data=f"sell_do_{ikey}"),
+            InlineKeyboardButton("🔙 𝐁𝐚𝐜𝐤",   callback_data=f"sell_now_{ikey}")
         ]
     ])
 
@@ -404,7 +404,7 @@ async def sell(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not owned_keys:
         await update.message.reply_text(
-            "🎒 You don't own any flex items to sell!\nVisit /shop to buy some.",
+            "🎒 𝚈𝚘𝚞 𝚍𝚘𝚗'𝚝 𝚘𝚠𝚗 𝚊𝚗𝚢 𝚏𝚕𝚎𝚡 𝚒𝚝𝚎𝚖 𝚝𝚘 𝚜𝚎𝚕𝚕 !\n𝚅𝚒𝚜𝚒𝚝 /shop 𝚝𝚘 𝚋𝚞𝚢 𝚜𝚘𝚖.",
             parse_mode="HTML"
         )
         return
@@ -417,13 +417,13 @@ async def sell(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "page":       0,
     }
 
-    text = f"""💸 <b>Sell Items</b>
+    text = f"""💸 <b>𝐒𝐞𝐥𝐥 𝐈𝐭𝐞𝐦𝐬</b>
 ━━━━━━━━━━━━━━━
 👤 {user.first_name}
 👛 Balance: <b>{fmt(udata['balance'])}</b>
 🎒 Items owned: <b>{len(owned_keys)}</b>
 ━━━━━━━━━━━━━━━
-Select an item to sell 👇"""
+𝑆𝑒𝑙𝑒𝑐𝑡 𝐼𝑡𝑒𝑚 𝑡𝑜 𝑠𝑒𝑙𝑙 👇"""
 
     await update.message.reply_text(
         text, parse_mode="HTML",
@@ -474,13 +474,13 @@ async def sell_button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
         sd["owned_keys"] = owned_keys
         context.user_data["sell"] = sd
 
-        text = f"""💸 <b>Sell Items</b>
+        text = f"""💸 <b>𝐒𝐞𝐥𝐥 𝐈𝐭𝐞𝐦𝐬</b>
 ━━━━━━━━━━━━━━━
 👤 {user.first_name}
 👛 Balance: <b>{fmt(udata['balance'])}</b>
 🎒 Items owned: <b>{len(owned_keys)}</b>
 ━━━━━━━━━━━━━━━
-Select an item to sell 👇"""
+𝐒𝐞𝐥𝐞𝐜𝐭 𝐚𝐧 𝐢𝐭𝐞𝐦 𝐭𝐨 𝐬𝐞𝐥𝐥. 👇"""
         await edit(text, sell_inventory_keyboard(owned_keys, page))
         return
 
@@ -491,13 +491,13 @@ Select an item to sell 👇"""
         page = sd.get("page", 0)
         context.user_data["sell"] = sd
 
-        text = f"""💸 <b>Sell Items</b>
+        text = f"""💸 <b>𝐒𝐞𝐥𝐥 𝐈𝐭𝐞𝐦</b>
 ━━━━━━━━━━━━━━━
 👤 {user.first_name}
 👛 Balance: <b>{fmt(udata['balance'])}</b>
 🎒 Items owned: <b>{len(owned_keys)}</b>
 ━━━━━━━━━━━━━━━
-Select an item to sell 👇"""
+𝐒𝐞𝐥𝐞𝐜𝐭 𝐚𝐧 𝐢𝐭𝐞𝐦 𝐭𝐨 𝐬𝐞𝐥𝐥. 👇"""
         await edit(text, sell_inventory_keyboard(owned_keys, page))
         return
 
@@ -542,14 +542,14 @@ Select an item to sell 👇"""
         sell_price = int(item["price"] * SELL_RETURN_PERCENT)
         tax_amt    = item["price"] - sell_price
 
-        text = f"""{item['emoji']} <b>Confirm Sale</b>
+        text = f"""{item['emoji']} <b>𝐂𝐨𝐧𝐟𝐨𝐫𝐦 𝐒𝐞𝐥𝐥</b>
 ━━━━━━━━━━━━━━━
 🛍️ Item: <b>{item['name']}</b>
 💰 Original: {fmt(item['price'])}
 ✂️ Tax (15%): -{fmt(tax_amt)}
 💸 You receive: <b>{fmt(sell_price)}</b>
 ━━━━━━━━━━━━━━━
-Are you sure?"""
+𝔸𝕣𝕖 𝕪𝕠𝕦 𝕤𝕦𝕣𝕖 ?"""
 
         await edit(text, sell_confirm_keyboard(ikey))
         return
@@ -559,7 +559,7 @@ Are you sure?"""
         ikey = data[len("sell_do_"):]
         item = FLEX_ITEMS.get(ikey)
         if not item:
-            await query.answer("❌ Item not found!", show_alert=True)
+            await query.answer("❌ 𝙸𝚝𝚎𝚖 𝚗𝚘𝚝 𝚏𝚘𝚞𝚗𝚍 !", show_alert=True)
             return
 
         # Fresh fetch
@@ -568,7 +568,7 @@ Are you sure?"""
         owned     = inventory2.get(ikey, {})
 
         if not owned or owned.get("qty", 0) <= 0:
-            await query.answer("❌ You no longer own this item!", show_alert=True)
+            await query.answer("❌ 𝚈𝚘𝚞 𝚗𝚘 𝚕𝚘𝚗𝚐𝚎𝚛 𝚘𝚠𝚗 𝚝𝚑𝚒𝚜 𝚒𝚝𝚎𝚖 !", show_alert=True)
             return
 
         sell_price  = int(item["price"] * SELL_RETURN_PERCENT)
@@ -590,7 +590,7 @@ Are you sure?"""
         context.user_data.pop("sell", None)
 
         # Receipt in chat
-        receipt = f"""{item['emoji']} <b>Item Sold!</b>
+        receipt = f"""{item['emoji']} <b>𝐈𝐭𝐞𝐦 𝐒𝐨𝐥𝐝 !</b>
 ━━━━━━━━━━━━━━━
 🛍️ Item: <b>{item['name']}</b>
 🌟 Rarity: {get_rarity(item['price'])}
