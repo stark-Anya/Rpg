@@ -99,11 +99,11 @@ WELCOME_TEXT = """<blockquote><b>❖ {name} 💞</b>
 <b>🏦 𝐄ᴀʀɴ ɪɴᴛᴇʀᴇsᴛ & ᴛᴀᴋᴇ ʟᴏᴀɴs</b>
 <b>🛡️ 𝐁ᴜʏ ᴡᴇᴀᴘᴏɴs & ᴀʀᴍᴏʀ</b>
 <b>💍 𝐌ᴀʀʀʏ ᴏʀ ʙʀᴇᴀᴋ ʜᴇᴀʀᴛ</b></blockquote>
-<blockquote expandable><b>✦ 𝐀ᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴇɴᴊᴏʏ.</b></blockquote>"""
+<blockquote expandable><b><a href="https://t.me/KiaraGameBot?startgroup=true">✦ 𝑨𝒅𝒅 𝒎𝒆 𝒊𝒏 𝒚𝒐𝒖𝒓 𝒈𝒓𝒐𝒖𝒑 𝒂𝒏𝒅 𝒆𝒏𝒋𝒐𝒚...💞</a></blockquote>"""
 
 HELP_INTRO = f"""<blockquote><b>❍ ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴘ.</b>
 <b>❍ ғᴏʀ ᴀɴʏ ǫᴜᴇʀɪᴇs, ᴀsᴋ ɪɴ <a href="https://t.me/CarelessxWorld">sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ</a></b></blockquote>
-<blockquote><b>❍ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ:</b><code> /</code></blockquote>
+<blockquote><b>❍ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ:</b><code>/</code></blockquote>
 """
 
 
