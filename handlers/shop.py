@@ -388,7 +388,7 @@ def sell_confirm_keyboard(ikey: str):
     return InlineKeyboardMarkup([
         [
             InlineKeyboardButton("✅ 𝐂𝐨𝐧𝐟𝐨𝐫𝐦", callback_data=f"sell_do_{ikey}"),
-            InlineKeyboardButton("🔙 𝐁𝐚𝐜𝐤",   callback_data=f"sell_now_{ikey}")
+            InlineKeyboardButton("🔙 𝐁𝐚𝐜𝐤",   callback_data=f"sell_close")
         ]
     ])
 
